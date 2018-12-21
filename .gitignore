@@ -1,0 +1,19 @@
+#.gitignore
+
+# Compiled Python files
+*.pyo
+*.pyc
+
+# Backup files
+*~
+
+# pycharm
+.idea
+
+# Read the doc & Sphinx
+docs/_build
+docs/_static
+docs/_templates
+
+# backups local
+backups
