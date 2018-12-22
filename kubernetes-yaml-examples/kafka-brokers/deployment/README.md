@@ -24,4 +24,5 @@ kubectl expose -n kafka pod kafka-2 --name kafka-2-jolokia-svc --port 8778
 kubectl create -f 01-telegraf-deployment-for-kafka-brokers.yml
 ```
 
+--------------
 [Go back](../)
