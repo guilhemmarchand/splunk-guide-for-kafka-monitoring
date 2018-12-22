@@ -6,9 +6,8 @@ See:
 
 [./sidecar-container](./sidecar-container/)
 
-## Telegraf as a deployment to monitor Zookeeper endpoints
+## Telegraf as a deployments
 
 See:
 
 [./deployment](./deployment/)
-

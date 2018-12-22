@@ -1,0 +1,35 @@
+# meant to be applied using
+# kubectl --namespace kafka patch statefulset kafka --patch "$(cat filename.yml )"
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka
+  namespace: kafka
+spec:
+  template:
+    spec:
+      containers:
+      - name: telegraf
+        image: docker.io/telegraf:latest
+        resources:
+          requests:
+            cpu: 10m
+            memory: 60Mi
+          limits:
+            memory: 120Mi
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        volumeMounts:
+        - name: telegraf-config-kafka-brokers
+          mountPath: /etc/telegraf
+      volumes:
+      - name: telegraf-config-kafka-brokers
+        configMap:
+          name: telegraf-config-kafka-brokers
