@@ -1,0 +1,42 @@
+kind: ConfigMap
+metadata:
+  name: telegraf-config-zookeeper
+  namespace: kafka
+apiVersion: v1
+data:
+
+  telegraf.conf: |+
+    [global_tags]
+      env = "$ENV"
+    [agent]
+      hostname = "$HOSTNAME"
+    [[outputs.http]]
+      ## URL is the address to send metrics to
+      url = "https://splunk-svc.cluster.local:8088/services/collector"
+      ## Timeout for HTTP message
+      # timeout = "5s"
+      ## Optional TLS Config
+      # tls_ca = "/etc/telegraf/ca.pem"
+      # tls_cert = "/etc/telegraf/cert.pem"
+      # tls_key = "/etc/telegraf/key.pem"
+      ## Use TLS but skip chain & host verification
+      insecure_skip_verify = true
+      ## Data format to output.
+      ## Each data format has it's own unique set of configuration options, read
+      ## more about them here:
+      ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
+      data_format = "splunkmetric"
+      ## Provides time, index, source overrides for the HEC
+      splunkmetric_hec_routing = true
+      ## Additional HTTP headers
+      [outputs.http.headers]
+        # Should be set manually to "application/json" for json data_format
+        Content-Type = "application/json"
+        #Authorization = "Splunk 65735c4b-f277-4f69-87ca-ff2b738c69f9"
+        #X-Splunk-Request-Channel = "65735c4b-f277-4f69-87ca-ff2b738c69f9"
+        Authorization = "Splunk 205d43f1-2a31-4e60-a8b3-327eda49944a"
+        X-Splunk-Request-Channel = "205d43f1-2a31-4e60-a8b3-327eda49944a"
+
+      # zookeeper metrics
+      [[inputs.zookeeper]]
+        servers = ["$POD_NAME:2181"]
