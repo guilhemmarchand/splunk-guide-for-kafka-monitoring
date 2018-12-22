@@ -225,8 +225,8 @@ Deploying Jolokia
 
 **To download the latest version of Jolokia:** https://jolokia.org/reference/html/agents.html#agents-jvm
 
-Jolokia jar in configMap
-------------------------
+Option 1: Jolokia jar in configMap
+----------------------------------
 
 **From your management server where kubectl is configured, download the latest Jolokia jar file:**
 
@@ -272,8 +272,8 @@ Jolokia jar in configMap
 
 **Finally, update the environment variable to start Jolokia (see next steps) and apply.**
 
-NFS persistent volume configuration example
--------------------------------------------
+Option 2: NFS persistent volume configuration example
+-----------------------------------------------------
 
 **Ensure all the nodes have the nfs-common package installed:**
 
@@ -370,8 +370,8 @@ NFS persistent volume configuration example
             - mountPath: "/opt/jolokia"
               name: pv-jolokia
 
-Local persistent volume configuration example
----------------------------------------------
+Option 3: Local persistent volume configuration example
+-------------------------------------------------------
 
 **Upload the jar file to each of Kubernetes node, this documentation assumes the agent will be available in /opt/jolokia/, example:**
 
