@@ -35,3 +35,5 @@ https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metr
 See
 
 https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metrics.html#option-3-local-persistent-volume-configuration-example
+
+[Go back](../)
