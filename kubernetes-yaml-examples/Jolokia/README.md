@@ -21,5 +21,5 @@ kubectl create configmap jolokia-jar --from-file=jolokia.jar
 *Export as a yaml:*
 
 ```
-kubectl get configmaps jolokia-jar -o yaml --export > jolokia-jar-configMap.yml
+kubectl get configmaps jolokia-jar -o yaml --export > 01-jolokia-jar-configmap.yml
 ```

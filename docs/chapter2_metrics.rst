@@ -248,7 +248,7 @@ https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master
 
 ::
 
-    kubectl get configmaps jolokia-jar -o yaml --export > jolokia-jar-configMap.yml
+    kubectl get configmaps jolokia-jar -o yaml --export > 01-jolokia-jar-configmap.yml
 
 **If you need your configMap to be associated with a name space, simply edit the end of the file and add your name space Metadata:**
 
