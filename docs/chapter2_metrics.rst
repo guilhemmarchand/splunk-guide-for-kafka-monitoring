@@ -775,8 +775,18 @@ Option 2: Telegraf as a deployment
 
 Running Telegraf as a deployment is basically achieving a remote collection of multiple instances from an independent pod and container, using 1 replica Kubernetes will ensure that always have at least 1 container running.
 
+Zookeeper monitoring:
+^^^^^^^^^^^^^^^^^^^^^
+
+**See:**
+
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper/deployment
+
+Description of the Kafka brokers example
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Expose the Kafka services
-^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""
 
 **The first requirement is having the services exposed, such that the Telegraf container will always be able to reach the Jolokia instances relying on the Kubernetes DNS records and services discovery.**
 
@@ -814,7 +824,7 @@ Expose the Kafka services
     urls = ["http://kafka-0-svc.kafka.svc.cluster.local:8778/jolokia","http://kafka-1-svc.kafka.svc.cluster.local:8778/jolokia","http://kafka-2-svc.kafka.svc.cluster.local:8778/jolokia"]
 
 Create the Telegraf deployment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""
 
 **The following example will create a deployment of 1 replica that monitors all the Kafka brokers:**
 
