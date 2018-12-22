@@ -228,6 +228,10 @@ Deploying Jolokia
 Option 1: Jolokia jar in configMap
 ----------------------------------
 
+**See the files in Github:**
+
+https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/Jolokia
+
 **From your management server where kubectl is configured, download the latest Jolokia jar file:**
 
 ::

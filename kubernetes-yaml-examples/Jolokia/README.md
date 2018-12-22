@@ -1,0 +1,1 @@
+# Configuration examples to deploy Jolokia for Kubernetes
