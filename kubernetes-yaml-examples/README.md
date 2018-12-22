@@ -24,4 +24,5 @@ yaml samples and quick instructions:
 
 [./kafka-brokers](./kafka-brokers/)
 
+--------------------------------------------------------------------------------
 [Go back](https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/)
