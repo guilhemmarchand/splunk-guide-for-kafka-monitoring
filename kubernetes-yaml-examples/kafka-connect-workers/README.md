@@ -1,1 +1,1 @@
-# Configuration examples for Confluent ksql-server monitoring in Kubernetes
+# Configuration examples for Kafka Connect workers monitoring in Kubernetes
