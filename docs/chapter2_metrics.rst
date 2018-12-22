@@ -454,7 +454,7 @@ Starting Jolokia with container startup
 Kafka brokers
 -------------
 
-**Modify your definitions:**
+**Modify your pod definition:**
 
 ::
 
@@ -469,7 +469,7 @@ Kafka brokers
 Kafka Connect
 -------------
 
-**Modify your definitions:**
+**Modify your pod definition:**
 
 ::
 
@@ -484,6 +484,8 @@ Kafka Connect
 Schema registry
 ---------------
 
+**Modify your pod definition:**
+
 ::
 
     spec:
@@ -497,6 +499,8 @@ Schema registry
 ksql-server
 -----------
 
+**Modify your pod definition:**
+
 ::
 
     spec:
@@ -509,6 +513,8 @@ ksql-server
 
 kafka-rest
 ----------
+
+**Modify your pod definition:**
 
 ::
 
@@ -536,8 +542,8 @@ Both designs are pertinents, however running collector agents as sidecar contain
 
 In addition, this is an easy "build and forget" approach, each container monitors the local JVM container automatically, following the same rhythm of destruction and creation.
 
-Telegraf as a sidecar container
--------------------------------
+Option 1: Telegraf as a sidecar container
+-----------------------------------------
 
 **When running Telegraf as a sidecar container, an additional container will be running in the same pod, generally associated with a StatefulSet.**
 
@@ -750,8 +756,8 @@ Telegraf as a sidecar container
 
     kubectl -n <namespace> exec -it <pod_name>-<pod_id> -c telegraf /bin/bash
 
-Telegraf as a deployment
-------------------------
+Option 2: Telegraf as a deployment
+----------------------------------
 
 Running Telegraf as a deployment is basically achieving a remote collection of multiple instances from an independent pod and container, using 1 replica Kubernetes will ensure that always have at least 1 container running.
 
@@ -763,6 +769,8 @@ Expose the Kafka services
 **Assuming a 3 pods Kafka brokers statefulSet, you can expose the Jolokia services using kubectl:**
 
 *Notes: the services do not need to be accessible from outside of the cluster*
+
+*The bellow exposes an example for Kafka brokers, the same must be achieved for Zookeeper and any other component*
 
 ::
 
