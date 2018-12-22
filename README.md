@@ -6,3 +6,9 @@ This guide and repository provide a deep guidance for an efficient and smart mon
 
 http://splunk-guide-for-kafka-monitoring.readthedocs.io
 
+**The monitoring guide provides documentation and configuration for:**
+
+- Traditional deployment in dedicated bare metals servers or virtual machines
+- Kubernetes containers deployments
+
+
