@@ -551,6 +551,16 @@ Option 1: Telegraf as a sidecar container
 
 **When running Telegraf as a sidecar container, an additional container will be running in the same pod, generally associated with a StatefulSet.**
 
+Zookeeper monitoring:
+^^^^^^^^^^^^^^^^^^^^^
+
+**See:**
+
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper/sidecar-container
+
+Description of Kafka Brokers example
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 *The following yaml example defines the configMap containing the telegraf.conf configuration for a Kafka broker:*
 
 *Notes:*
