@@ -1,10 +1,11 @@
+apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: telegraf-config-zookeeper
+  name: telegraf-zookeeper
   namespace: kafka
-apiVersion: v1
+  labels:
+    k8s-app: telegraf-zookeeper
 data:
-
   telegraf.conf: |+
     [global_tags]
       env = "$ENV"
@@ -39,4 +40,51 @@ data:
 
       # zookeeper metrics
       [[inputs.zookeeper]]
-        servers = ["$POD_NAME:2181"]
+        servers = ["zookeeper-0-svc:2181", "zookeeper-1-svc:2181", "zookeeper-2-svc:2181"]
+
+---
+# Section: Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegraf-zookeeper
+  namespace: kafka
+  labels:
+    k8s-app: telegraf-zookeeper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: telegraf-zookeeper
+  template:
+    metadata:
+      labels:
+        name: telegraf-zookeeper
+    spec:
+      containers:
+      - name: telegraf
+        image: docker.io/telegraf:latest
+        resources:
+          requests:
+            cpu: 10m
+            memory: 60Mi
+          limits:
+            memory: 120Mi
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        volumeMounts:
+        - name: telegraf-kafka-brokers-config
+          mountPath: /etc/telegraf
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: config
+        configMap:
+          name: telegraf-kafka-brokers
+
