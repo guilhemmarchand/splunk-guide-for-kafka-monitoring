@@ -8,18 +8,18 @@ See:
 
 https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metrics.html#id1
 
-Yaml samples and quick instructions:
+yaml samples and quick instructions:
 
 [./jolokia](./jolokia/)
 
 ### Zookeeper monitoring
 
-Yaml samples and quick instructions:
+yaml samples and quick instructions:
 
 [./zookeeper](./zookeeper/)
 
 ### Kafka brokers monitoring
 
-Yaml samples and quick instructions:
+yaml samples and quick instructions:
 
 [./kafka-brokers](./kafka-brokers/)
