@@ -18,7 +18,7 @@ kubectl create -f 01-telegraf-config-kafka-brokers.yml
 
 - Modify 02-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet (default named zookeeper)
 
-- Patch your Zookeeper statefulSet (modify the name of your statefulSet and namespace in the kubectl command line if different):
+- Patch your statefulSet (modify the name of your statefulSet and namespace in the kubectl command line if different):
 
 ```
 kubectl --namespace kafka patch statefulset zookeeper --patch "$(cat 02-patch-kafka-brokers-statefulset.yml )"
