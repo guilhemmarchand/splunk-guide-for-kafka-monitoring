@@ -558,6 +558,13 @@ Zookeeper monitoring:
 
 - https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper/sidecar-container
 
+Kafka brokers monitoring:
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**See:**
+
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers/sidecar-container
+
 Description of Kafka Brokers example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -781,6 +788,13 @@ Zookeeper monitoring:
 **See:**
 
 - https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper/deployment
+
+Kafka brokers monitoring:
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**See:**
+
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers/deployment
 
 Description of the Kafka brokers example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
