@@ -24,4 +24,4 @@ kubectl create -f 01-telegraf-config-zookeeper.yml
 kubectl --namespace kafka patch statefulset zookeeper --patch "$(cat 02-patch-zookeeper-statefulset.yml )"
 ```
 
-[../](Go back)
+[Go back](../)
