@@ -23,3 +23,5 @@ kubectl expose -n kafka pod zookeeper-2 --name zookeeper-2-svc --port 2181
 ```
 kubectl create -f 01-telegraf-deployment-for-zookeeper.yml
 ```
+
+[../](Go back)

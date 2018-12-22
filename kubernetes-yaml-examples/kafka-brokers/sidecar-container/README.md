@@ -23,3 +23,5 @@ kubectl create -f 01-telegraf-config-kafka-brokers.yml
 ```
 kubectl --namespace kafka patch statefulset kafka --patch "$(cat 02-patch-kafka-brokers-statefulset.yml )"
 ```
+
+[../](Go back)
