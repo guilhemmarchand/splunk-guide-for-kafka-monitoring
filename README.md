@@ -11,4 +11,10 @@ http://splunk-guide-for-kafka-monitoring.readthedocs.io
 - Traditional deployment in dedicated bare metals servers or virtual machines
 - Kubernetes containers deployments
 
+**We architecture the monitoring solution on the following major axes:**
+
+- Chapter 1: Event logging
+- Chapter 2: Metrics and performance
+- Chapter 3: Alerting
+
 
