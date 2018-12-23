@@ -1,5 +1,7 @@
 #.gitignore
 
+kubernetes-yaml-examples/yaml_git_ignored/*.yml
+
 # Compiled Python files
 *.pyo
 *.pyc

@@ -1,9 +1,9 @@
 # meant to be applied using
-# kubectl --namespace kafka patch statefulset zookeeper --patch "$(cat 02-patch-zookeeper-statefulset.yml )"
+# kubectl --namespace kafka patch deployment confluent-oss-cp-schema-registry --patch "$(cat 04-patch-confluent-schema-registry.yml )"
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: confluent-oss-cp-zookeeper
+  name: confluent-oss-cp-schema-registry
   namespace: kafka
 spec:
   template:
@@ -37,9 +37,9 @@ spec:
               name: splunk-secrets
               key: splunk_hec_token
         volumeMounts:
-        - name: telegraf-config-zookeeper
+        - name: telegraf-config-confluent-schema-registry
           mountPath: /etc/telegraf
       volumes:
-      - name: telegraf-config-zookeeper
+      - name: telegraf-config-confluent-schema-registry
         configMap:
-          name: telegraf-config-zookeeper
+          name: telegraf-config-confluent-schema-registry

@@ -1,0 +1,22 @@
+# meant to be applied using
+# kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-rest --patch "$(cat 03-patch-confluent-schema-registry.yml )"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: confluent-oss-cp-schema-registry
+  namespace: kafka
+spec:
+  template:
+    spec:
+      containers:
+      - name: cp-schema-registry-server
+        env:
+        - name: SCHEMA_REGISTRY_OPTS
+          value: "-javaagent:/opt/jolokia/jolokia.jar=port=8778,host=0.0.0.0"
+        volumeMounts:
+        - name: jolokia-jar
+          mountPath: "/opt/jolokia"
+      volumes:
+      - name: jolokia-jar
+        configMap:
+          name: jolokia-jar

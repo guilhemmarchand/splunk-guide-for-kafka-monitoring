@@ -1,6 +1,6 @@
 kind: ConfigMap
 metadata:
-  name: telegraf-config-zookeeper
+  name: telegraf-config-confluent-kafka-rest
   namespace: kafka
 apiVersion: v1
 data:
@@ -23,6 +23,17 @@ data:
         Authorization = "Splunk $SPLUNK_HEC_TOKEN"
         X-Splunk-Request-Channel = "$SPLUNK_HEC_TOKEN"
 
-    # zookeeper metrics
-    [[inputs.zookeeper]]
-      servers = ["$POD_NAME:2181"]
+      # kafka-rest JVM monitoring
+
+    [[inputs.jolokia2_agent]]
+      name_prefix = "kafka_kafka-rest."
+      urls = ["http://$POD_NAME:8778/jolokia"]
+
+    [[inputs.jolokia2_agent.metric]]
+      name         = "jetty-metrics"
+      mbean        = "kafka.rest:type=jetty-metrics"
+      paths = ["connections-active", "connections-opened-rate", "connections-closed-rate"]
+
+    [[inputs.jolokia2_agent.metric]]
+      name         = "jersey-metrics"
+      mbean        = "kafka.rest:type=jersey-metrics"

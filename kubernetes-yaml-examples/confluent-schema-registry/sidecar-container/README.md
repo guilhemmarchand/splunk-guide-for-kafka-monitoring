@@ -1,4 +1,4 @@
-# Telegraf sidecar container to monitor Kafka brokers in Kubernetes statefulSet
+# Telegraf sidecar container to monitor Confluent schema-registry in Kubernetes deployment
 
 **See:**
 
@@ -40,7 +40,7 @@ The "splunk_hec_url" and "splunk_hec_token" are automatically substituted by the
 - Create the Kubernetes configMap:
 
 ```
-kubectl create -f 01-telegraf-config-kafka-brokers.yml
+kubectl create -f 01-telegraf-config-confluent-schema-registry.yml
 ```
 
 **Step 2:**
@@ -53,10 +53,10 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 **Step 3:**
 
-- Update the file 03-patch-kafka-brokers-statefulset.yml and 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet deployment:
+- Update the file 03-patch-confluent-schema-registry.yml and 04-patch-confluent-schema-registry.yml to match the name of your statefulSet deployment:
 
 ```
-kubectl -n kafka get kubectl -n kafka get statefulsets.apps
+kubectl -n kafka get deployment
 ```
 
 *Note: in sample, default used is confluent-oss-cp-kafka*
@@ -64,29 +64,29 @@ kubectl -n kafka get kubectl -n kafka get statefulsets.apps
 Modify manually your statefulSet to include the jolokia volume and the JVM starting agent, or even easier patch your existing statefulSet:
 
 ```
-kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 03-patch-kafka-brokers-statefulset.yml )"
+kubectl --namespace kafka patch deployment confluent-oss-cp-schema-registry --patch "$(cat 03-patch-confluent-schema-registry.yml )"
 ```
 
 **Step 4:**
 
 Finally patch your statefulSet to start monitoring:
 
-- Modify 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet (default named zookeeper)
+- Modify 04-patch-confluent-schema-registry.yml to match the name of your statefulSet (default named zookeeper)
 
 - Patch your statefulSet (modify the name of your statefulSet and namespace in the kubectl command line if different):
 
 ```
-kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-kafka-brokers-statefulset.yml )"
+kubectl --namespace kafka patch deployment confluent-oss-cp-schema-registry --patch "$(cat 04-patch-confluent-schema-registry.yml )"
 ```
 
 **To troubleshoot, useful kubectl commands:**
 
 ```
-kubectl -n kafka describe statefulSet.apps confluent-oss-cp-kafka
+kubectl -n kafka describe deployments.apps confluent-oss-cp-schema-registry
 kubectl -n kafka get po
-kubectl -n kafka describe po confluent-oss-cp-kafka-0
-kubectl -n kafka logs confluent-oss-cp-kafka-0 -c telegraf
-kubectl -n kafka logs confluent-oss-cp-kafka-0 -c cp-kafka-broker
+kubectl -n kafka describe po confluent-oss-cp-schema-registry-7f7b87b6f6-27ln4
+kubectl -n kafka logs confluent-oss-cp-schema-registry-7f7b87b6f6-27ln4 -c telegraf
+kubectl -n kafka logs confluent-oss-cp-schema-registry-7f7b87b6f6-27ln4 -c cp-schema-registry-server
 ```
 
 --------------

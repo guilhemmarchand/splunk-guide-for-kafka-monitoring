@@ -1,6 +1,6 @@
 kind: ConfigMap
 metadata:
-  name: telegraf-config-zookeeper
+  name: telegraf-config-confluent-ksql-server
   namespace: kafka
 apiVersion: v1
 data:
@@ -11,18 +11,22 @@ data:
     [agent]
       hostname = "$POD_NAME"
     [[outputs.http]]
-      ## URL is the address to send metrics to
       url = "https://$SPLUNK_HEC_URL/services/collector"
-      ## Use TLS but skip chain & host verification
       insecure_skip_verify = true
       data_format = "splunkmetric"
       splunkmetric_hec_routing = true
-      ## Additional HTTP headers
       [outputs.http.headers]
         Content-Type = "application/json"
         Authorization = "Splunk $SPLUNK_HEC_TOKEN"
         X-Splunk-Request-Channel = "$SPLUNK_HEC_TOKEN"
 
-    # zookeeper metrics
-    [[inputs.zookeeper]]
-      servers = ["$POD_NAME:2181"]
+    # ksql-server JVM monitoring
+
+    [[inputs.jolokia2_agent]]
+      name_prefix = "kafka_"
+      urls = ["http://$POD_NAME:8778/jolokia"]
+
+    [[inputs.jolokia2_agent.metric]]
+      name         = "ksql-server"
+      mbean        = "io.confluent.ksql.metrics:type=*"
+      paths = ["error-rate", "num-persistent-queries", "messages-consumed-per-sec", "messages-produced-per-sec", "num-active-queries" , "num-idle-queries", "messages-consumed-max"]

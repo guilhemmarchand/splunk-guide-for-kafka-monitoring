@@ -1,0 +1,40 @@
+kind: ConfigMap
+metadata:
+  name: telegraf-config-confluent-schema-registry
+  namespace: kafka
+apiVersion: v1
+data:
+
+  telegraf.conf: |+
+    [global_tags]
+      env = "$ENV"
+    [agent]
+      hostname = "$POD_NAME"
+    [[outputs.http]]
+      url = "https://$SPLUNK_HEC_URL/services/collector"
+      insecure_skip_verify = true
+      data_format = "splunkmetric"
+      splunkmetric_hec_routing = true
+      [outputs.http.headers]
+        Content-Type = "application/json"
+        Authorization = "Splunk $SPLUNK_HEC_TOKEN"
+        X-Splunk-Request-Channel = "$SPLUNK_HEC_TOKEN"
+
+    # schema-registry JVM monitoring
+
+    [[inputs.jolokia2_agent]]
+      name_prefix = "kafka_schema-registry."
+      urls = ["http://$POD_NAME:8778/jolokia"]
+
+    [[inputs.jolokia2_agent.metric]]
+      name         = "jetty-metrics"
+      mbean        = "kafka.schema.registry:type=jetty-metrics"
+      paths = ["connections-active", "connections-opened-rate", "connections-closed-rate"]
+
+    [[inputs.jolokia2_agent.metric]]
+      name         = "master-slave-role"
+      mbean        = "kafka.schema.registry:type=master-slave-role"
+
+    [[inputs.jolokia2_agent.metric]]
+      name         = "jersey-metrics"
+      mbean        = "kafka.schema.registry:type=jersey-metrics"

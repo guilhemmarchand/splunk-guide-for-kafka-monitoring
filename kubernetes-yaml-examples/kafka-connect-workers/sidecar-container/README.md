@@ -1,4 +1,4 @@
-# Telegraf sidecar container to monitor Kafka brokers in Kubernetes statefulSet
+# Telegraf sidecar container to monitor Kafka Connect in Kubernetes statefulSet
 
 **See:**
 
@@ -40,7 +40,7 @@ The "splunk_hec_url" and "splunk_hec_token" are automatically substituted by the
 - Create the Kubernetes configMap:
 
 ```
-kubectl create -f 01-telegraf-config-kafka-brokers.yml
+kubectl create -f 01-telegraf-config-kafka-connect.yml
 ```
 
 **Step 2:**
@@ -53,18 +53,18 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 **Step 3:**
 
-- Update the file 03-patch-kafka-brokers-statefulset.yml and 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet deployment:
+- Update the file 03-patch-kafka-connect-statefulset.yml and 04-patch-kafka-connect-statefulset.yml to match the name of your statefulSet deployment:
 
 ```
 kubectl -n kafka get kubectl -n kafka get statefulsets.apps
 ```
 
-*Note: in sample, default used is confluent-oss-cp-kafka*
+*Note: in sample, default used is confluent-oss-cp-kafka-connect*
 
-Modify manually your statefulSet to include the jolokia volume and the JVM starting agent, or even easier patch your existing statefulSet:
+Modify manually your deployment to include the jolokia volume and the JVM starting agent, or even easier patch your existing statefulSet:
 
 ```
-kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 03-patch-kafka-brokers-statefulset.yml )"
+kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-connect --patch "$(cat 03-patch-kafka-connect-statefulset.yml )"
 ```
 
 **Step 4:**
@@ -76,17 +76,17 @@ Finally patch your statefulSet to start monitoring:
 - Patch your statefulSet (modify the name of your statefulSet and namespace in the kubectl command line if different):
 
 ```
-kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-kafka-brokers-statefulset.yml )"
+kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-connect --patch "$(cat 04-patch-kafka-connect-statefulset.yml )"
 ```
 
 **To troubleshoot, useful kubectl commands:**
 
 ```
-kubectl -n kafka describe statefulSet.apps confluent-oss-cp-kafka
+kubectl -n kafka describe deployments.apps confluent-oss-cp-kafka-connect
 kubectl -n kafka get po
-kubectl -n kafka describe po confluent-oss-cp-kafka-0
-kubectl -n kafka logs confluent-oss-cp-kafka-0 -c telegraf
-kubectl -n kafka logs confluent-oss-cp-kafka-0 -c cp-kafka-broker
+kubectl -n kafka describe po confluent-oss-cp-kafka-connect-64d4544f58-7tb9w
+kubectl -n kafka logs confluent-oss-cp-kafka-connect-64d4544f58-7tb9w -c telegraf
+kubectl -n kafka logs confluent-oss-cp-kafka-connect-64d4544f58-7tb9w -c cp-kafka-connect-server
 ```
 
 --------------

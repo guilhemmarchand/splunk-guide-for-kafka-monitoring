@@ -1,9 +1,9 @@
 # meant to be applied using
-# kubectl --namespace kafka patch statefulset kafka --patch "$(cat 02-patch-kafka-brokers-statefulset.yml )"
+# kubectl --namespace kafka patch statefulset kafka --patch "$(cat 04-patch-kafka-brokers-statefulset.yml )"
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: kafka
+  name: confluent-oss-cp-kafka
   namespace: kafka
 spec:
   template:
@@ -26,6 +26,16 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
+        - name: SPLUNK_HEC_URL
+          valueFrom:
+            secretKeyRef:
+              name: splunk-secrets
+              key: splunk_hec_url
+        - name: SPLUNK_HEC_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: splunk-secrets
+              key: splunk_hec_token
         volumeMounts:
         - name: telegraf-config-kafka-brokers
           mountPath: /etc/telegraf

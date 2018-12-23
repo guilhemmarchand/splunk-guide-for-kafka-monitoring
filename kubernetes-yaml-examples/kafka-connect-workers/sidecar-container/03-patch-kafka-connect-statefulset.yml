@@ -1,0 +1,22 @@
+# meant to be applied using
+# kubectl --namespace kafka patch deployment kafka --patch "$(cat 03-patch-kafka-connect-statefulset.yml )"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: confluent-oss-cp-kafka-connect
+  namespace: kafka
+spec:
+  template:
+    spec:
+      containers:
+      - name: cp-kafka-connect-server
+        env:
+        - name: KAFKA_OPTS
+          value: "-javaagent:/opt/jolokia/jolokia.jar=port=8778,host=0.0.0.0"
+        volumeMounts:
+        - name: jolokia-jar
+          mountPath: "/opt/jolokia"
+      volumes:
+      - name: jolokia-jar
+        configMap:
+          name: jolokia-jar
