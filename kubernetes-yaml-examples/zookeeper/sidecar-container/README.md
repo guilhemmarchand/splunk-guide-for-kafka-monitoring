@@ -6,7 +6,7 @@ https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metr
 
 **Step 1:**
 
-- Ensure you have created secrets of your Splunk HEC url and token value, these secrets needs to be created ONCE ONLY for all containers.example:
+- Ensure you have created secrets of your Splunk HEC url and token value, these secrets needs to be created ONCE ONLY for all containers, example:
 
 *Generate the base64 values:*
 
