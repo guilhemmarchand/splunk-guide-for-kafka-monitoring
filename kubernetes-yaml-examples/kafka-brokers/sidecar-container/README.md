@@ -10,10 +10,12 @@ https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metr
 
 *Generate the base64 values:*
 
+```
 echo "splunk_hec.mydomain.com" | base64
 c3BsdW5rX2hlYy5teWRvbWFpbi5jb20K
 echo -n '65735c4b-f277-4f69-87ca-ff2b738c69f9' | base64
 NjU3MzVjNGItZjI3Ny00ZjY5LTg3Y2EtZmYyYjczOGM2OWY5
+```
 
 *Create and apply your secrets: ../../yaml_git_ignored/splunk_secrets.yml*
 
