@@ -31,8 +31,8 @@ metadata:
   namespace: kafka
 type: Opaque
 data:
-  splunk_hec_url: c3BsdW5rX2hlYy5teWRvbWFpbi5jb20K
-  splunk_hec_token: NjU3MzVjNGItZjI3Ny00ZjY5LTg3Y2EtZmYyYjczOGM2OWY5
+  splunk_hec_url: "c3BsdW5rX2hlYy5teWRvbWFpbi5jb20K"
+  splunk_hec_token: "NjU3MzVjNGItZjI3Ny00ZjY5LTg3Y2EtZmYyYjczOGM2OWY5"
 ```
 
 *Create:*
