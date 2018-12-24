@@ -54,7 +54,7 @@ kubectl create -f 01-telegraf-config-zookeeper.yml
 - Update the file 02-patch-zookeeper-statefulset.yml to match the name of your statefulSet deployment:
 
 ```
-kubectl -n kafka get kubectl -n kafka get statefulsets.apps
+kubectl -n kafka get statefulsets.apps
 ```
 
 *Note: in sample, default used is confluent-oss-cp-zookeeper*
