@@ -542,31 +542,56 @@ Deploying Telegraf
 - Running Telegraf agent as a container in the same pod than the JVM container, called a sidecar container. (recommended approach)
 - Running Telegraf agent as a deployment with 1 replica, accessing all JVMs instances via cluster exposed services (one or more deployments if you want to specialise per role, or something else)
 
-Both designs are pertinents, however running collector agents as sidecar containers provides valuable advantages such as ensuring that the collector container will always run on the same node.
+Both designs are pertinents, however running collector agents as sidecar containers provides valuable advantages such as ensuring that the collector container will always run on the same node and it is not required to expose any endpoint.
 
 In addition, this is an easy "build and forget" approach, each container monitors the local JVM container automatically, following the same rhythm of destruction and creation.
 
-Option 1: Telegraf as a sidecar container
------------------------------------------
+**When running Telegraf as a sidecar container, an additional container will be running in the same pod, generally associated with a StatefulSet or Deployment.**
 
-**When running Telegraf as a sidecar container, an additional container will be running in the same pod, generally associated with a StatefulSet.**
-
-Zookeeper monitoring:
-^^^^^^^^^^^^^^^^^^^^^
+Zookeeper monitoring
+--------------------
 
 **See:**
 
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper/sidecar-container
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper
 
-Kafka brokers monitoring:
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Kafka Brokers monitoring
+------------------------
 
 **See:**
 
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers/sidecar-container
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers
+
+Kafka Connect monitoring
+------------------------
+
+**See:**
+
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-connect
+
+Confluent schema-registry monitoring
+------------------------------------
+
+**See:**
+
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-schema-registry
+
+Confluent kafka-rest monitoring
+-------------------------------
+
+**See:**
+
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-kafka-rest
+
+Confluent ksql-server monitoring
+--------------------------------
+
+**See:**
+
+- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-ksql-server
 
 Description of Kafka Brokers example
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------
 
 *The following yaml example defines the configMap containing the telegraf.conf configuration for a Kafka broker:*
 
@@ -776,249 +801,3 @@ Description of Kafka Brokers example
 ::
 
     kubectl -n <namespace> exec -it <pod_name>-<pod_id> -c telegraf /bin/bash
-
-Option 2: Telegraf as a deployment
-----------------------------------
-
-Running Telegraf as a deployment is basically achieving a remote collection of multiple instances from an independent pod and container, using 1 replica Kubernetes will ensure that always have at least 1 container running.
-
-Zookeeper monitoring:
-^^^^^^^^^^^^^^^^^^^^^
-
-**See:**
-
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper/deployment
-
-Kafka brokers monitoring:
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**See:**
-
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers/deployment
-
-Description of the Kafka brokers example
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Expose the Kafka services
-"""""""""""""""""""""""""
-
-**The first requirement is having the services exposed, such that the Telegraf container will always be able to reach the Jolokia instances relying on the Kubernetes DNS records and services discovery.**
-
-**Assuming a 3 pods Kafka brokers statefulSet, you can expose the Jolokia services using kubectl:**
-
-*Notes: the services do not need to be accessible from outside of the cluster*
-
-*The bellow exposes an example for Kafka brokers, the same must be achieved for Zookeeper and any other component*
-
-::
-
-    kubectl expose -n kafka pod kafka-0 --name kafka-0-jolokia --port 8778
-    kubectl expose -n kafka pod kafka-1 --name kafka-1-jolokia --port 8778
-    kubectl expose -n kafka pod kafka-2 --name kafka-2-jolokia --port 8778
-
-**Verify the services:**
-
-::
-
-    kubectl -n kafka get svc
-
-**Example:**
-
-::
-
-    NAME              TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
-    kafka-0-jolokia   ClusterIP   10.96.191.196    <none>        8778/TCP            1m
-    kafka-1-jolokia   ClusterIP   10.108.21.64     <none>        8778/TCP            12s
-    kafka-2-jolokia   ClusterIP   10.100.124.188   <none>        8778/TCP            7s
-
-**In the example above, given that the pods are linked to the kafka namespace, the Jolokia url target will be:**
-
-::
-
-    urls = ["http://kafka-0-svc.kafka.svc.cluster.local:8778/jolokia","http://kafka-1-svc.kafka.svc.cluster.local:8778/jolokia","http://kafka-2-svc.kafka.svc.cluster.local:8778/jolokia"]
-
-Create the Telegraf deployment
-""""""""""""""""""""""""""""""
-
-**The following example will create a deployment of 1 replica that monitors all the Kafka brokers:**
-
-*telegraf-deployment-kafka-broker.yml*
-
-::
-
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: telegraf-kafka-brokers
-      namespace: kafka
-      labels:
-        k8s-app: telegraf-kafka-brokers
-    data:
-      telegraf.conf: |+
-        [global_tags]
-          env = "$ENV"
-        [agent]
-          hostname = "$HOSTNAME"
-        [[outputs.http]]
-          ## URL is the address to send metrics to
-          url = "https://splunk.mydomain.com:8088/services/collector"
-          ## Timeout for HTTP message
-          # timeout = "5s"
-          ## Optional TLS Config
-          # tls_ca = "/etc/telegraf/ca.pem"
-          # tls_cert = "/etc/telegraf/cert.pem"
-          # tls_key = "/etc/telegraf/key.pem"
-          ## Use TLS but skip chain & host verification
-          insecure_skip_verify = true
-          ## Data format to output.
-          ## Each data format has it's own unique set of configuration options, read
-          ## more about them here:
-          ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
-          data_format = "splunkmetric"
-          ## Provides time, index, source overrides for the HEC
-          splunkmetric_hec_routing = true
-          ## Additional HTTP headers
-          [outputs.http.headers]
-            # Should be set manually to "application/json" for json data_format
-            Content-Type = "application/json"
-            #Authorization = "Splunk 65735c4b-f277-4f69-87ca-ff2b738c69f9"
-            #X-Splunk-Request-Channel = "65735c4b-f277-4f69-87ca-ff2b738c69f9"
-            Authorization = "Splunk 205d43f1-2a31-4e60-a8b3-327eda49944a"
-            X-Splunk-Request-Channel = "205d43f1-2a31-4e60-a8b3-327eda49944a"
-
-        #[[inputs.prometheus]]
-        #  urls = ["http://kafka-0-svc.kafka.svc.cluster.local:5556/metrics"]
-
-        # Kafka JVM monitoring
-
-        [[inputs.jolokia2_agent]]
-          name_prefix = "kafka_"
-          urls = ["http://kafka-0-svc.kafka.svc.cluster.local:8778/jolokia","http://kafka-1-svc.kafka.svc.cluster.local:8778/jolokia","http://kafka-2-svc.kafka.svc.cluster.local:8778/jolokia"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "controller"
-          mbean        = "kafka.controller:name=*,type=*"
-          field_prefix = "$1."
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "replica_manager"
-          mbean        = "kafka.server:name=*,type=ReplicaManager"
-          field_prefix = "$1."
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "purgatory"
-          mbean        = "kafka.server:delayedOperation=*,name=*,type=DelayedOperationPurgatory"
-          field_prefix = "$1."
-          field_name   = "$2"
-
-        [[inputs.jolokia2_agent.metric]]
-          name     = "client"
-          mbean    = "kafka.server:client-id=*,type=*"
-          tag_keys = ["client-id", "type"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "network"
-          mbean        = "kafka.network:name=*,request=*,type=RequestMetrics"
-          field_prefix = "$1."
-          tag_keys     = ["request"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "network"
-          mbean        = "kafka.network:name=ResponseQueueSize,type=RequestChannel"
-          field_prefix = "ResponseQueueSize"
-          tag_keys     = ["name"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "network"
-          mbean        = "kafka.network:name=NetworkProcessorAvgIdlePercent,type=SocketServer"
-          field_prefix = "NetworkProcessorAvgIdlePercent"
-          tag_keys     = ["name"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "topics"
-          mbean        = "kafka.server:name=*,type=BrokerTopicMetrics"
-          field_prefix = "$1."
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "topic"
-          mbean        = "kafka.server:name=*,topic=*,type=BrokerTopicMetrics"
-          field_prefix = "$1."
-          tag_keys     = ["topic"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name       = "partition"
-          mbean      = "kafka.log:name=*,partition=*,topic=*,type=Log"
-          field_name = "$1"
-          tag_keys   = ["topic", "partition"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name       = "log"
-          mbean      = "kafka.log:name=LogFlushRateAndTimeMs,type=LogFlushStats"
-          field_name = "LogFlushRateAndTimeMs"
-          tag_keys   = ["name"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name       = "partition"
-          mbean      = "kafka.cluster:name=UnderReplicated,partition=*,topic=*,type=Partition"
-          field_name = "UnderReplicatedPartitions"
-          tag_keys   = ["topic", "partition"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name     = "request_handlers"
-          mbean    = "kafka.server:name=RequestHandlerAvgIdlePercent,type=KafkaRequestHandlerPool"
-          tag_keys = ["name"]
-
-        # JVM garbage collector monitoring
-        [[inputs.jolokia2_agent.metric]]
-          name     = "jvm_garbage_collector"
-          mbean    = "java.lang:name=*,type=GarbageCollector"
-          paths    = ["CollectionTime", "CollectionCount", "LastGcInfo"]
-          tag_keys = ["name"]
-
-    ---
-    # Section: Deployment
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: telegraf-kafka-brokers
-      namespace: kafka
-      labels:
-        k8s-app: telegraf-kafka-brokers
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          name: telegraf-kafka-brokers
-      template:
-        metadata:
-          labels:
-            name: telegraf-kafka-brokers
-        spec:
-          containers:
-          - name: telegraf
-            image: docker.io/telegraf:latest
-            resources:
-              limits:
-                memory: 500Mi
-              requests:
-                cpu: 100m
-                memory: 500Mi
-            env:
-            - name: HOSTNAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: spec.nodeName
-            volumeMounts:
-            - name: telegraf-kafka-brokers-config
-              mountPath: /etc/telegraf
-          terminationGracePeriodSeconds: 30
-          volumes:
-          - name: config
-            configMap:
-              name: telegraf-kafka-brokers
-
-**Apply:**
-
-::
-
-    kubectl create -f telegraf-deployment-kafka-broker.yml
