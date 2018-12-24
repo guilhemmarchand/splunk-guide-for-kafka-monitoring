@@ -62,7 +62,7 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 - Update the file 03-patch-confluent-schema-registry.yml and 04-patch-confluent-schema-registry.yml to match the name of your deployment:
 
 ```
-kubectl -n kafka get deployment
+kubectl -n kafka get deployments.apps
 ```
 
 *Note: in sample, default used is confluent-oss-cp-kafka*
