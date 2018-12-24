@@ -17,4 +17,3 @@ http://splunk-guide-for-kafka-monitoring.readthedocs.io
 - Chapter 2: Metrics and performance
 - Chapter 3: Alerting
 
-
