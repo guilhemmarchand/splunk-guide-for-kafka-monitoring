@@ -54,7 +54,7 @@ kubectl create -f 01-telegraf-config-kafka-connect.yml
 Ensure to have deployed the jolokia.jar, the easiest is using a configMap:
 
 ```
-kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
+kubectl create -f ../Jolokia/01-jolokia-jar-configmap.yml
 ```
 
 **Step 3: (patch for volumes)**

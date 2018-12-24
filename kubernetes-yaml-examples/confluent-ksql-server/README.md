@@ -20,7 +20,7 @@ NjU3MzVjNGItZjI3Ny00ZjY5LTg3Y2EtZmYyYjczOGM2OWY5
 *Create and apply your secrets:*
 
 ```
-../../yaml_git_ignored/splunk_secrets.yml
+../yaml_git_ignored/splunk_secrets.yml
 ```
 
 ```
@@ -38,7 +38,7 @@ data:
 *Create:*
 
 ```
-kubectl create -f ../../yaml_git_ignored/splunk_secrets.yml
+kubectl create -f ../yaml_git_ignored/splunk_secrets.yml
 ```
 
 The "splunk_hec_url" and "splunk_hec_token" are automatically substituted by the according values.
@@ -54,7 +54,7 @@ kubectl create -f 01-telegraf-config-confluent-ksql-server.yml
 Ensure to have deployed the jolokia.jar, the easiest is using a configMap:
 
 ```
-kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
+kubectl create -f ../Jolokia/01-jolokia-jar-configmap.yml
 ```
 
 **Step 3: (patch for volumes)**
