@@ -59,7 +59,7 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 **Step 3: (patch for volumes)**
 
-- Update the file 03-patch-confluent-ksql-server.yml and 04-patch-confluent-ksql-server.yml to match the name of your statefulSet deployment:
+- Update the file 03-patch-confluent-ksql-server.yml and 04-patch-confluent-ksql-server.yml to match the name of your deployment:
 
 ```
 kubectl -n kafka get deployment
@@ -67,7 +67,7 @@ kubectl -n kafka get deployment
 
 *Note: in sample, default used is confluent-oss-cp-kafka*
 
-Modify manually your statefulSet to include the jolokia volume and the JVM starting agent, or even easier patch your existing statefulSet:
+Modify manually your deployment to include the jolokia volume and the JVM starting agent, or even easier patch your existing deployment:
 
 ```
 kubectl --namespace kafka patch deployment confluent-oss-cp-ksql-server --patch "$(cat 03-patch-confluent-ksql-server.yml )"
@@ -75,11 +75,11 @@ kubectl --namespace kafka patch deployment confluent-oss-cp-ksql-server --patch 
 
 **Step 4: (patch for telegraf)**
 
-Finally patch your statefulSet to start monitoring:
+Finally patch your deployment to start monitoring:
 
-- Modify 04-patch-confluent-ksql-server.yml to match the name of your statefulSet (default named zookeeper)
+- Modify 04-patch-confluent-ksql-server.yml to match the name of your deployment (default named zookeeper)
 
-- Patch your statefulSet (modify the name of your statefulSet and namespace in the kubectl command line if different):
+- Patch your deployment (modify the name of your deployment and namespace in the kubectl command line if different):
 
 ```
 kubectl --namespace kafka patch deployment confluent-oss-cp-ksql-server --patch "$(cat 04-patch-confluent-ksql-server.yml )"
