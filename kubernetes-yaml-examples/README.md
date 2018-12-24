@@ -10,7 +10,7 @@ https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metr
 
 yaml samples and quick instructions:
 
-[./jolokia](./jolokia/)
+[./Jolokia](./Jolokia/)
 
 ### Zookeeper monitoring
 
