@@ -328,10 +328,10 @@ Testing with minikube
       ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
       ## and remove the curly braces after 'resources:'
         limits:
-         cpu: 100m
+         cpu: 200m
          memory: 512Mi
         requests:
-         cpu: 100m
+         cpu: 200m
          memory: 512Mi
 
     ## ------------------------------------------------------
