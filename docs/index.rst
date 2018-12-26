@@ -12,6 +12,7 @@ Welcome to the unified guide for Kafka and Confluent monitoring with Splunk
 * realtime and high performance metric store
 * evolutive and efficient alerting
 * scalability and resiliency
+* compatibility with traditional bare metails/virtual machines deployments and Kubernetes containers deployments
 
 **As a basis, the following components are being natively managed:**
 
