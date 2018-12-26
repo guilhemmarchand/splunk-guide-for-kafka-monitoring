@@ -174,13 +174,18 @@ https://splunkbase.splunk.com/app/4261
 
 https://da-itsi-telegraf-kafka.readthedocs.io/
 
+ITSI provides a totally different and infinitely more advanced level than a traditional monitoring solution, the ITSI module for Kafka used in combination with ITSI provides the real difference with business and technical services design and monitoring, machine learning and so much more.
+
 .. image:: img/itsi/glass_table.png
    :alt: glass_table.png
    :align: center
 
-.. image:: img/itsi/main1.png
-   :alt: main1.png
+.. image:: img/itsi/itsi_dep.png
+   :alt: itsi_dep.png
    :align: center
 
-ITSI provides a totally different and much more advanced level that a traditional monitoring, the ITSI module for Kafka used in combination with ITSI provides the real difference with business and technical services design and monitoring, machine learning, etc.
+.. image:: img/itsi/deepdive_link.png
+   :alt: deepdive_link.png
+   :align: center
 
+Please consult the documentation of the ITSI module for more details about its configuration and use.
