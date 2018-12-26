@@ -847,9 +847,31 @@ Description of Kafka Brokers example
 - verify and modify namespace
 - observe the usage of a variable "$POD_NAME" in the Jolokia URL, this is required to be able to identify properly the instance
 
-*pro-tips: you can use secrets for a better management of the Splunk url and token values, avoiding you to customise the yaml and safety storing these values. Steps are described in the Git repository.*
-
 https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers
+
+**Create a global-config.yml configMap yaml files used to store and define the value for the Splunk url, token and the environment name:**
+
+*global-config.yml*
+
+::
+
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      namespace: kafka
+      name: global-config
+    data:
+      env: my-environment
+      splunk_hec_url: my-splunk-hec.domain.com:8088
+      splunk_hec_token: 205d43f1-2a31-4e60-a8b3-327eda49944a
+
+**Create:**
+
+::
+
+    kubectl create -f global-config.yml
+
+**Create your configMap for Telegraf:**
 
 *telegraf-config-kafka-broker.yml*
 
@@ -866,20 +888,16 @@ https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master
         [global_tags]
           env = "$ENV"
         [agent]
-          hostname = "$HOSTNAME"
+          hostname = "$POD_NAME"
         [[outputs.http]]
-          ## URL is the address to send metrics to
-          url = "https://splunk.mydomain.com:8088/services/collector"
+          url = "https://$SPLUNK_HEC_URL/services/collector"
           insecure_skip_verify = true
           data_format = "splunkmetric"
-          ## Provides time, index, source overrides for the HEC
           splunkmetric_hec_routing = true
-          ## Additional HTTP headers
           [outputs.http.headers]
-            # Should be set manually to "application/json" for json data_format
             Content-Type = "application/json"
-            Authorization = "Splunk 205d43f1-2a31-4e60-a8b3-327eda49944a"
-            X-Splunk-Request-Channel = "205d43f1-2a31-4e60-a8b3-327eda49944a"
+            Authorization = "Splunk $SPLUNK_HEC_TOKEN"
+            X-Splunk-Request-Channel = "$SPLUNK_HEC_TOKEN"
 
         # Kafka JVM monitoring
 
@@ -999,12 +1017,17 @@ https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master
           - name: telegraf
             image: docker.io/telegraf:latest
             resources:
-              limits:
-                memory: 500Mi
               requests:
-                cpu: 100m
-                memory: 500Mi
+                cpu: 10m
+                memory: 60Mi
+              limits:
+                memory: 120Mi
             env:
+            - name: ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config
+                  key: env
             - name: HOSTNAME
               valueFrom:
                 fieldRef:
@@ -1013,6 +1036,16 @@ https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: SPLUNK_HEC_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config
+                  key: splunk_hec_url
+            - name: SPLUNK_HEC_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config
+                  key: splunk_hec_token
             volumeMounts:
             - name: telegraf-config-kafka-broker
               mountPath: /etc/telegraf
@@ -1033,8 +1066,13 @@ https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master
 
     kubectl -n <namespace> logs <pod_name>-<pod_id> -c telegraf
 
-**To open a terminal in the container, example:**
+**To troubleshoot, useful kubectl commands:**
 
 ::
 
-    kubectl -n <namespace> exec -it <pod_name>-<pod_id> -c telegraf /bin/bash
+    kubectl -n kafka describe statefulSet.apps confluent-oss-cp-kafka
+    kubectl -n kafka get po
+    kubectl -n kafka describe po confluent-oss-cp-kafka-0
+    kubectl -n kafka logs confluent-oss-cp-kafka-0 -c telegraf
+    kubectl -n kafka logs confluent-oss-cp-kafka-0 -c cp-kafka-broker
+
