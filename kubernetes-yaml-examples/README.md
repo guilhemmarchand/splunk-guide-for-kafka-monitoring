@@ -2,6 +2,8 @@
 
 ## This direction contains yaml configuration examples to monitor Kafka and Confluent infrastructure in Kubernetes
 
+![screen1](./docs/img/draw.io/Kubernetes-deployment.png)
+
 --------------------------------------------------------------------------------
 
 ### Jolokia deployment
