@@ -4,7 +4,7 @@
 
 https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metrics.html#option-1-telegraf-as-a-sidecar-container
 
-**Step 1: (Splunk url and token environment variables)**
+### Step 1: (Splunk url and token environment variables)
 
 - Ensure you have created a configMap to reference the environment name, Splunk HEC url and token values that will be used by all your pods:
 
@@ -36,7 +36,7 @@ The "splunk_hec_url" and "splunk_hec_token" are automatically substituted by the
 kubectl create -f 01-telegraf-config-zookeeper.yml
 ```
 
-**Step 2: (patch for telegraf)**
+### Step 2: (patch for telegraf)
 
 - Update the file 02-patch-zookeeper-statefulset.yml to match the name of your statefulSet deployment:
 
