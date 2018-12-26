@@ -35,6 +35,12 @@ Welcome to the unified guide for Kafka and Confluent monitoring with Splunk
    :alt: overview_diagram
    :align: center
 
+*Kubernetes metrics collection diagram - sidecar containers:*
+
+.. image:: img/draw.io/Kubernetes-deployment.png
+   :alt: Kubernetes-deployment.png
+   :align: center
+
 Implementation:
 ===============
 
