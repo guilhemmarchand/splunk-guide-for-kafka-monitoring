@@ -2,6 +2,8 @@
 
 ## This direction contains yaml configuration examples to monitor Kafka and Confluent infrastructure in Kubernetes
 
+*metrics collection diagram - sidecar containers:*
+
 ![screen1](../docs/img/draw.io/Kubernetes-deployment.png)
 
 --------------------------------------------------------------------------------
