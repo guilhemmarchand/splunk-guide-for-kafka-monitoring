@@ -2,6 +2,8 @@
 
 ## This direction contains yaml configuration examples to monitor Kafka and Confluent infrastructure in Kubernetes
 
+--------------------------------------------------------------------------------
+
 ### Jolokia deployment
 
 See:
@@ -12,11 +14,15 @@ yaml samples and quick instructions:
 
 [./Jolokia](./Jolokia/)
 
+--------------------------------------------------------------------------------
+
 ### Zookeeper monitoring
 
 yaml samples and quick instructions:
 
 [./zookeeper](./zookeeper/)
+
+--------------------------------------------------------------------------------
 
 ### Kafka Brokers monitoring
 
@@ -24,11 +30,15 @@ yaml samples and quick instructions:
 
 [./kafka-brokers](./kafka-brokers/)
 
+--------------------------------------------------------------------------------
+
 ### Kafka Connect
 
 yaml samples and quick instructions:
 
 [./kafka-connect](./kafka-connect/)
+
+--------------------------------------------------------------------------------
 
 ### Confluent schema-registry
 
@@ -36,17 +46,23 @@ yaml samples and quick instructions:
 
 [./confluent-schema-registry](./confluent-schema-registry/)
 
+--------------------------------------------------------------------------------
+
 ### Confluent kafka-rest
 
 yaml samples and quick instructions:
 
 [./confluent-kafka-rest](./confluent-kafka-rest/)
 
+--------------------------------------------------------------------------------
+
 ### Confluent ksql-server
 
 yaml samples and quick instructions:
 
 [./confluent-ksql-server](./confluent-ksql-server/)
+
+--------------------------------------------------------------------------------
 
 ### Kafka monitor by LinkedIn
 
