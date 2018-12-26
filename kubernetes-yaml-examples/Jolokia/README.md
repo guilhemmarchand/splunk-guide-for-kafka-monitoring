@@ -1,5 +1,7 @@
 # Configuration examples to deploy Jolokia for Kubernetes
 
+--------------------------------------------------------------------------------
+
 ## Option 1: Jolokia jar in configMap
 
 See:
@@ -24,11 +26,15 @@ kubectl create configmap jolokia-jar --from-file=jolokia.jar
 kubectl get configmaps jolokia-jar -o yaml --export > 01-jolokia-jar-configmap.yml
 ```
 
+--------------------------------------------------------------------------------
+
 ## Option 2: NFS persistent volume configuration example
 
 See
 
 https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metrics.html#option-2-nfs-persistent-volume-configuration-example
+
+--------------------------------------------------------------------------------
 
 ## Option 3: Local persistent volume configuration example
 

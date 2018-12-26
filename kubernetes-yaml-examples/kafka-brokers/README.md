@@ -4,7 +4,9 @@
 
 https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metrics.html#option-1-telegraf-as-a-sidecar-container
 
-**Step 1: (Splunk url and token environment variables)**
+--------------------------------------------------------------------------------
+
+### Step 1: (Splunk url and token environment variables)
 
 - Ensure you have created a configMap to reference the environment name, Splunk HEC url and token values that will be used by all your pods:
 
@@ -36,7 +38,9 @@ The "splunk_hec_url" and "splunk_hec_token" are automatically substituted by the
 kubectl create -f 01-telegraf-config-kafka-brokers.yml
 ```
 
-**Step 2: (configMap)**
+--------------------------------------------------------------------------------
+
+### Step 2: (configMap)
 
 Ensure to have deployed the jolokia.jar, the easiest is using a configMap:
 
@@ -44,7 +48,9 @@ Ensure to have deployed the jolokia.jar, the easiest is using a configMap:
 kubectl create -f ../Jolokia/01-jolokia-jar-configmap.yml
 ```
 
-**Step 3: (patch for volumes)**
+--------------------------------------------------------------------------------
+
+### Step 3: (patch for volumes)
 
 - Update the file 03-patch-kafka-brokers-statefulset.yml and 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet deployment:
 
@@ -60,7 +66,9 @@ Modify manually your statefulSet to include the jolokia volume and the JVM start
 kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 03-patch-kafka-brokers-statefulset.yml )"
 ```
 
-**Step 4: (patch for telegraf)**
+--------------------------------------------------------------------------------
+
+### Step 4: (patch for telegraf)
 
 Finally patch your statefulSet to start monitoring:
 

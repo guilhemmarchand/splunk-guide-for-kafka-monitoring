@@ -6,7 +6,9 @@ https://github.com/linkedin/kafka-monitor
 
 As a builtin configuration, the kafka-monitor implements a jolokia agent, so collecting the metrics with Telegraf only requires an input configuration within a Telegraf container.
 
-**Step 1: (Splunk url and token environment variables)**
+--------------------------------------------------------------------------------
+
+### Step 1: (Splunk url and token environment variables)
 
 - Ensure you have created a configMap to reference the environment name, Splunk HEC url and token values that will be used by all your pods:
 
@@ -32,7 +34,9 @@ kubectl create -f ../yaml_git_ignored/global-config.yml
 
 The "splunk_hec_url" and "splunk_hec_token" are automatically substituted by the according values.
 
-**Step 2: Create your docker image, update and create the confiMap and start your Deployment**
+--------------------------------------------------------------------------------
+
+### Step 2: Create your docker image, update and create the confiMap and start your Deployment
 
 It is very straightforward to run the kafka-monitor in a docker container, first you need to create your own image:
 
@@ -54,13 +58,17 @@ kubectl create -f 01-linkedin-kafka-monitor-configmap.yml
 kubectl create -f 02-linkedin-kafka-monitor-deployment.yml
 ```
 
-**Step 3: Create the configMap for Telegraf**
+--------------------------------------------------------------------------------
+
+### Step 3: Create the configMap for Telegraf
 
 ```
 kubectl create -f 03-telegraf-kafka-monitor-configmap.yml
 ```
 
-**Step 4: (patch for telegraf)**
+--------------------------------------------------------------------------------
+
+### Step 4: (patch for telegraf)
 
 Finally patch your deployment to start monitoring:
 
