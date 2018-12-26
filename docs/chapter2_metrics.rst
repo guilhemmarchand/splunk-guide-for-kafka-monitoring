@@ -208,6 +208,8 @@ Monitoring Kafka in Kubernetes
 2. Configuring the containers to start with Jolokia
 3. Deploying the Telegraf containers
 
+*metrics collection diagram - sidecar containers:*
+
 .. image:: img/draw.io/Kubernetes-deployment.png
    :alt: Kubernetes-deployment.png
    :align: center
