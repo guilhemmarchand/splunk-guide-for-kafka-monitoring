@@ -1,4 +1,4 @@
-Chapter 3: alerting
+Chapter 3: Alerting
 ###################
 
 Monitoring your Kafka infrastructure with Splunk and the application Telegraf for Kafka

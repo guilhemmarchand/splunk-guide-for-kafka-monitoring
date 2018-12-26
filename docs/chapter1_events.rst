@@ -1,4 +1,4 @@
-Chapter 1: events logging
+Chapter 1: Events logging
 #########################
 
 Pre-requisites

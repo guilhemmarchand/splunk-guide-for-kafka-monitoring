@@ -1,4 +1,4 @@
-Chapter 2: metrics
+Chapter 2: Metrics
 ##################
 
 Monitoring Kafka in dedicated servers (bare metal, VMs)
