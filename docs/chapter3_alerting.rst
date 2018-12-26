@@ -181,3 +181,6 @@ https://da-itsi-telegraf-kafka.readthedocs.io/
 .. image:: img/itsi/main1.png
    :alt: main1.png
    :align: center
+
+ITSI provides a totally different and much more advanced level that a traditional monitoring, the ITSI module for Kafka used in combination with ITSI provides the real difference with business and technical services design and monitoring, machine learning, etc.
+
