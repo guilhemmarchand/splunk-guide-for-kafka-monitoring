@@ -18,6 +18,11 @@ spec:
           limits:
             memory: 120Mi
         env:
+        - name: ENV
+          valueFrom:
+            configMapKeyRef:
+              name: global-config
+              key: env
         - name: HOSTNAME
           valueFrom:
             fieldRef:
@@ -28,13 +33,13 @@ spec:
               fieldPath: metadata.name
         - name: SPLUNK_HEC_URL
           valueFrom:
-            secretKeyRef:
-              name: splunk-secrets
+            configMapKeyRef:
+              name: global-config
               key: splunk_hec_url
         - name: SPLUNK_HEC_TOKEN
           valueFrom:
-            secretKeyRef:
-              name: splunk-secrets
+            configMapKeyRef:
+              name: global-config
               key: splunk_hec_token
         volumeMounts:
         - name: telegraf-config-confluent-schema-registry

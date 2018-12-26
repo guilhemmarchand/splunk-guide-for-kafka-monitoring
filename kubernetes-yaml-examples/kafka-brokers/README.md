@@ -4,41 +4,28 @@
 
 https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metrics.html#option-1-telegraf-as-a-sidecar-container
 
-**Step 1: (Splunk secrets)**
+**Step 1: (Splunk url and token environment variables)**
 
-- Ensure you have created secrets of your Splunk HEC url and token value, these secrets needs to be created ONCE ONLY for all containers, example:
+- Ensure you have created a configMap to reference the environment name, Splunk HEC url and token values that will be used by all your pods:
 
-*Generate the base64 values:*
-
-```
-echo "splunk_hec.mydomain.com" | base64
-c3BsdW5rX2hlYy5teWRvbWFpbi5jb20K
-echo -n '65735c4b-f277-4f69-87ca-ff2b738c69f9' | base64
-NjU3MzVjNGItZjI3Ny00ZjY5LTg3Y2EtZmYyYjczOGM2OWY5
-```
-
-*Create and apply your secrets:*
-
-```
-../yaml_git_ignored/splunk_secrets.yml
-```
+*../yaml_git_ignored/global-config.yml:*
 
 ```
 apiVersion: v1
-kind: Secret
+kind: ConfigMap
 metadata:
-  name: splunk-secrets
   namespace: kafka
-type: Opaque
+  name: global-config
 data:
-  splunk_hec_url: "c3BsdW5rX2hlYy5teWRvbWFpbi5jb20K"
-  splunk_hec_token: "NjU3MzVjNGItZjI3Ny00ZjY5LTg3Y2EtZmYyYjczOGM2OWY5"
+  env: my-environment
+  splunk_hec_url: my-splunk-hec.domain.com:8088
+  splunk_hec_token: 205d43f1-2a31-4e60-a8b3-327eda49944a
 ```
 
 *Create:*
 
 ```
-kubectl create -f ../yaml_git_ignored/splunk_secrets.yml
+kubectl create -f ../yaml_git_ignored/global-config.yml
 ```
 
 The "splunk_hec_url" and "splunk_hec_token" are automatically substituted by the according values.
