@@ -48,5 +48,11 @@ yaml samples and quick instructions:
 
 [./confluent-ksql-server](./confluent-ksql-server/)
 
+### Kafka monitor by LinkedIn
+
+yaml samples and quick instructions:
+
+[./LinkedIn-kafka-monitor](./LinkedIn-kafka-monitor/)
+
 --------------------------------------------------------------------------------
 [Go back](https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/)

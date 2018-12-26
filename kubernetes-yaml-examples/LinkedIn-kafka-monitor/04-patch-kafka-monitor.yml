@@ -1,0 +1,45 @@
+# meant to be applied using
+# kubectl --namespace kafka patch deployment kafka --patch "$(cat 04-patch-kafka-connect-statefulset.yml )"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-monitor
+  namespace: kafka
+spec:
+  template:
+    spec:
+      containers:
+      - name: telegraf
+        image: docker.io/telegraf:latest
+        resources:
+          requests:
+            cpu: 10m
+            memory: 60Mi
+          limits:
+            memory: 120Mi
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: SPLUNK_HEC_URL
+          valueFrom:
+            secretKeyRef:
+              name: splunk-secrets
+              key: splunk_hec_url
+        - name: SPLUNK_HEC_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: splunk-secrets
+              key: splunk_hec_token
+        volumeMounts:
+        - name: telegraf-config-kafka-monitor
+          mountPath: /etc/telegraf
+      volumes:
+      - name: telegraf-config-kafka-monitor
+        configMap:
+          name: telegraf-config-kafka-monitor
