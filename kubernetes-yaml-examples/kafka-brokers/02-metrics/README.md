@@ -45,7 +45,7 @@ kubectl create -f 01-telegraf-config-kafka-brokers.yml
 KAFKA_OPTS environment variable is update to cover log4j and Jolokia:
 
 ```
-kubectl apply -f ../Jolokia/01-jolokia-jar-configmap.yml
+kubectl apply -f 02-kafka-brokers-opts-configmap.yml
 ```
 
 --------------------------------------------------------------------------------
