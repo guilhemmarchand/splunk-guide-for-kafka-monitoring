@@ -10,7 +10,7 @@ https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metr
 
 - Ensure you have created a configMap to reference the environment name, Splunk HEC url and token values that will be used by all your pods:
 
-*../yaml_git_ignored/global-config.yml:*
+*../../yaml_git_ignored/global-config.yml:*
 
 ```
 apiVersion: v1
@@ -27,7 +27,7 @@ data:
 *Create:*
 
 ```
-kubectl create -f ../yaml_git_ignored/global-config.yml
+kubectl create -f ../../yaml_git_ignored/global-config.yml
 ```
 
 The "splunk_hec_url" and "splunk_hec_token" are automatically substituted by the according values.
@@ -40,19 +40,29 @@ kubectl create -f 01-telegraf-config-kafka-brokers.yml
 
 --------------------------------------------------------------------------------
 
-### Step 2: (configMap)
+### Step 2: (update KAFKA_OPTS configMap)
 
-Ensure to have deployed the jolokia.jar, the easiest is using a configMap:
+KAFKA_OPTS environment variable is update to cover log4j and Jolokia:
 
 ```
-kubectl create -f ../Jolokia/01-jolokia-jar-configmap.yml
+kubectl apply -f ../Jolokia/01-jolokia-jar-configmap.yml
 ```
 
 --------------------------------------------------------------------------------
 
-### Step 3: (patch for volumes)
+### Step 3: (Jolokia configMap)
 
-- Update the file 03-patch-kafka-brokers-statefulset.yml and 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet deployment:
+Ensure to have deployed the jolokia.jar, the easiest is using a configMap:
+
+```
+kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
+```
+
+--------------------------------------------------------------------------------
+
+### Step 4: (patch for volumes)
+
+- Update the file 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet deployment:
 
 ```
 kubectl -n kafka get statefulsets.apps
@@ -60,25 +70,11 @@ kubectl -n kafka get statefulsets.apps
 
 *Note: in sample, default used is confluent-oss-cp-kafka*
 
-Modify manually your statefulSet to include the jolokia volume and the JVM starting agent, or even easier patch your existing statefulSet:
-
 ```
 kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 03-patch-kafka-brokers-statefulset.yml )"
 ```
 
 --------------------------------------------------------------------------------
-
-### Step 4: (patch for telegraf)
-
-Finally patch your statefulSet to start monitoring:
-
-- Modify 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet (default named zookeeper)
-
-- Patch your statefulSet (modify the name of your statefulSet and namespace in the kubectl command line if different):
-
-```
-kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-kafka-brokers-statefulset.yml )"
-```
 
 **To troubleshoot, useful kubectl commands:**
 

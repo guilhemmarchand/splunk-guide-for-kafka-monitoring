@@ -9,6 +9,10 @@ spec:
   template:
     spec:
       containers:
+      - name: cp-kafka-broker
+        volumeMounts:
+        - name: jolokia-jar
+          mountPath: "/opt/jolokia"
       - name: telegraf
         image: docker.io/telegraf:latest
         resources:
@@ -48,3 +52,6 @@ spec:
       - name: telegraf-config-kafka-brokers
         configMap:
           name: telegraf-config-kafka-brokers
+      - name: jolokia-jar
+        configMap:
+          name: jolokia-jar
