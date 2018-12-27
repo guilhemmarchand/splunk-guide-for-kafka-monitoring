@@ -147,11 +147,12 @@ Deploy this Splunk application to the containers, and events logging magic will 
 **To troubleshoot, useful kubectl commands:**
 
 ```
-kubectl -n kafka describe statefulSet.apps confluent-oss-cp-kafka
+kubectl -n kafka describe statefulSet.apps confluent-oss-cp-zookeeper
 kubectl -n kafka get po
-kubectl -n kafka describe po confluent-oss-cp-kafka-0
-kubectl -n kafka logs confluent-oss-cp-kafka-0 -c splunk
-kubectl -n kafka logs confluent-oss-cp-kafka-0 -c cp-kafka-broker
+kubectl -n kafka describe po confluent-oss-cp-zoopeeker-0
+kubectl -n kafka logs confluent-oss-cp-zoopeeker-0 -c splunk
+kubectl -n kafka logs confluent-oss-cp-zookeeper-0 -c cp-zookeeper-server
+kubectl -n kafka exec -it confluent-oss-cp-zookeeper-0 /bin/bash -c splunk
 ```
 
 --------------
