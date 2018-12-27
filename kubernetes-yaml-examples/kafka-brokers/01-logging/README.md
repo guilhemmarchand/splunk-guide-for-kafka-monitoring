@@ -47,7 +47,6 @@ metadata:
 data:
   splunk_deployment_server: "my-splunk-ds-url.amazonaws.com"
   splunk_s2s_port: "8089"
-  splunk_kafka_index: "kafka"
 ```
 
 *Create:*
@@ -59,6 +58,10 @@ kubectl create -f ../../yaml_git_ignored/global-splunk-uf-config.yml
 --------------------------------------------------------------------------------
 
 ### Step 2: (Splunk inputs configMap)
+
+This configuration create the inputs for the Splunk Universal Forwarder to monitor and index the Kafka brokers events.
+
+The default index is named "kafka", if you wish to change this, update the configMap before its creation.
 
 *Create:*
 
