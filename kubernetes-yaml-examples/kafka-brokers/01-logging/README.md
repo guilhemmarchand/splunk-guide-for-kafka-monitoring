@@ -4,7 +4,7 @@
 
 --------------------------------------------------------------------------------
 
-This configuration guide assumes that you have a Splunk Deployment Server (DS) that the Splunk Universal Forwarders sidecar containers will contact to retrieve specific configurations.
+This configuration guide assumes that you have a Splunk Deployment Server (DS) that the Splunk Universal Forwarders sidecar containers will contact to retrieve specific configuration items.
 
 Specially, your Deployment Server needs to deploy automatically the outputs configuration that provides the definition for your indexing layer. (outputs.conf)
 
