@@ -47,6 +47,7 @@ metadata:
 data:
   splunk_deployment_server: "my-splunk-ds-url.amazonaws.com"
   splunk_s2s_port: "8089"
+  splunk_kafka_index: "kafka"
 ```
 
 *Create:*
@@ -57,28 +58,36 @@ kubectl create -f ../../yaml_git_ignored/global-splunk-uf-config.yml
 
 --------------------------------------------------------------------------------
 
-### Step 2: (KAFKA_OPTS configMap)
+### Step 2: (Splunk inputs configMap)
 
 *Create:*
 
 ```
-kubectl create -f 02-kafka-brokers-opts-configmap.yml
+kubectl create -f 02-kafka-brokers-splunk-inputs.yml
 ```
 
---------------------------------------------------------------------------------
-
-### Step 3: (log4j configMap)
+### Step 3: (KAFKA_OPTS configMap)
 
 *Create:*
 
 ```
-kubectl create -f 03-kafka-brokers-log4j-configmap.yml
+kubectl create -f 03-kafka-brokers-opts-configmap.yml
+```
+
+--------------------------------------------------------------------------------
+
+### Step 4: (log4j configMap)
+
+*Create:*
+
+```
+kubectl create -f 04-kafka-brokers-log4j-configmap.yml
 
 ```
 
 --------------------------------------------------------------------------------
 
-### Step 4: (patch)
+### Step 5: (patch)
 
 The patch will update your Kafka broker statefulSet deployment and create the Splunk Universal Forwarder sidecar container.
 
