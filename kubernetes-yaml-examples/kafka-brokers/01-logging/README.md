@@ -86,5 +86,17 @@ kubectl create -f 03-kafka-brokers-log4j-configmap.yml
 kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
 ```
 
+--------------------------------------------------------------------------------
+
+**To troubleshoot, useful kubectl commands:**
+
+```
+kubectl -n kafka describe statefulSet.apps confluent-oss-cp-kafka
+kubectl -n kafka get po
+kubectl -n kafka describe po confluent-oss-cp-kafka-0
+kubectl -n kafka logs confluent-oss-cp-kafka-0 -c splunk
+kubectl -n kafka logs confluent-oss-cp-kafka-0 -c cp-kafka-broker
+```
+
 --------------
 [Go back](../)
