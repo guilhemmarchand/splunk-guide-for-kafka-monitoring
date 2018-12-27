@@ -4,11 +4,7 @@
 
 --------------------------------------------------------------------------------
 
-This configuration guide assumes that you have a Splunk Deployment Server (DS) that the Splunk Universal Forwarders sidecar containers will contact to retrieve specific configuration items.
-
-Specially, your Deployment Server needs to deploy automatically the outputs configuration that provides the definition for your indexing layer. (outputs.conf)
-
-If you do not want to use a Deployment Server for this purpose, you can modify the following configuration and provides the outputs definition in a configMap. (see 02-kafka-brokers-splunk-inputs.yml/05-patch-shared-volume-and-splunk-uf.yml)
+This configuration guide assumes that you have a Splunk Deployment Server (DS) that the Splunk Universal Forwarders sidecar containers will contact to retrieve its configuration such as inputs and outputs.
 
 ### Step 1: (Splunk secrets and configMap)
 
@@ -63,46 +59,32 @@ kubectl create -f ../../yaml_git_ignored/global-splunk-uf-config.yml
 
 --------------------------------------------------------------------------------
 
-### Step 2: (Splunk inputs configMap)
-
-This configuration create the inputs for the Splunk Universal Forwarder to monitor and index the Kafka brokers events.
-
-The default index is named "kafka", if you wish to change this, update the configMap before its creation.
-
-Make sure the index has been created in your Splunk indexing layer.
+### Step 2: (KAFKA_OPTS configMap)
 
 *Create:*
 
 ```
-kubectl create -f 02-kafka-brokers-splunk-inputs.yml
-```
-
-### Step 3: (KAFKA_OPTS configMap)
-
-*Create:*
-
-```
-kubectl create -f 03-kafka-brokers-opts-configmap.yml
+kubectl create -f 02-kafka-brokers-opts-configmap.yml
 ```
 
 --------------------------------------------------------------------------------
 
-### Step 4: (log4j configMap)
+### Step 3: (log4j configMap)
 
 *Create:*
 
 ```
-kubectl create -f 04-kafka-brokers-log4j-configmap.yml
+kubectl create -f 03-kafka-brokers-log4j-configmap.yml
 
 ```
 
 --------------------------------------------------------------------------------
 
-### Step 5: (patch)
+### Step 4: (patch)
 
 The patch will update your Kafka broker statefulSet deployment and create the Splunk Universal Forwarder sidecar container.
 
-- Update the file 05-patch-shared-volume-and-splunk-uf.yml to match the name of your statefulSet deployment
+- Update the file 04-patch-shared-volume-and-splunk-uf.yml to match the name of your statefulSet deployment
 
 *This part must be changed to match the name of your statefulSet deployment:*
 
@@ -114,8 +96,92 @@ metadata:
 - Run the patch command and ensure you specify the name of your statefulSet deployment:
 
 ```
-kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 05-patch-shared-volume-and-splunk-uf.yml )"
+kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
 ```
+
+--------------------------------------------------------------------------------
+
+### Step 5: (Splunk)
+
+Once the Splunk UF containers will have been started, the containers will be connected to your Splunk Deployment Server.
+
+Create a Splunk Application containing the following configuration:
+
+```
+TA-kafka-brokers/
+                 local/
+                       inputs.conf
+                       props.conf
+```
+
+*inputs.conf*
+
+```
+[monitor:///var/log/kafka/controller.log]
+disabled = false
+index = kafka
+sourcetype = kafka:broker:controller
+
+[monitor:///var/log/kafka/server.log]
+disabled = false
+index = kafka
+sourcetype = kafka:broker:server
+
+[monitor:///var/log/kafka/state-change.log]
+disabled = false
+index = kafka
+sourcetype = kafka:broker:state-change
+
+[monitor:///var/log/kafka/log-cleaner.log]
+disabled = false
+index = kafka
+sourcetype = kafka:broker:log-cleaner
+
+[monitor:///var/log/kafka/kafka-request.log]
+disabled = false
+index = kafka
+sourcetype = kafka:broker:kafka-request
+
+[monitor:///var/log/kafka/kafka-authorizer.log]
+disabled = fale
+index = kafka
+sourcetype = kafka:broker:kafka-authorizer
+
+[monitor:///var/log/kafka/*-gc.log*.current]
+disabled = fale
+index = kafka
+sourcetype = kafka:broker:gc-log
+```
+
+*props.conf*
+
+```
+[kafka:broker:controller]
+EVENT_BREAKER_ENABLE=true
+EVENT_BREAKER=([\n\r]+)\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\,\d{3}\]
+
+[kafka:broker:server]
+EVENT_BREAKER_ENABLE=true
+EVENT_BREAKER=([\n\r]+)\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\,\d{3}\]
+
+[kafka:broker:state-change]
+EVENT_BREAKER_ENABLE=true
+EVENT_BREAKER=([\n\r]+)\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\,\d{3}\]
+
+[kafka:broker:log-cleaner]
+EVENT_BREAKER_ENABLE=true
+EVENT_BREAKER=([\n\r]+)\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\,\d{3}\]
+
+[kafka:broker:kafka-request]
+EVENT_BREAKER_ENABLE=true
+EVENT_BREAKER=([\n\r]+)\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\,\d{3}\]
+
+[kafka:broker:kafka-authorizer]
+EVENT_BREAKER_ENABLE=true
+EVENT_BREAKER=([\n\r]+)\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\,\d{3}\]
+```
+
+Deploy this Splunk application to the containers, and events logging magic will start.
 
 --------------------------------------------------------------------------------
 
