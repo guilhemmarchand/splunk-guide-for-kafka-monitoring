@@ -1,7 +1,5 @@
 # Kafka brokers monitoring in a Kubernetes statefulSet
 
---------------------------------------------------------------------------------
-
 ### Events logging
 
 [./01-logging](./01-logging/)
