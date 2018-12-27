@@ -1,4 +1,4 @@
-# Splunk Universal Forwarder sidecar container to monitor Kafka brokers in Kubernetes statefulSet
+# Splunk Universal Forwarder sidecar container to monitor events logging of Kafka brokers in a Kubernetes statefulSet
 
 **See:**
 
