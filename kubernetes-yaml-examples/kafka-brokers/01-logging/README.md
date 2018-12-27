@@ -109,7 +109,7 @@ kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(ca
 
 Once the Splunk UF containers will have been started, the containers will be connected to your Splunk Deployment Server.
 
-![screen1](../../docs/img/kafka-brokers-ds.png)
+![screen1](../../../docs/img/kafka-brokers-ds.png)
 
 Create a Splunk Application containing the following configuration:
 
