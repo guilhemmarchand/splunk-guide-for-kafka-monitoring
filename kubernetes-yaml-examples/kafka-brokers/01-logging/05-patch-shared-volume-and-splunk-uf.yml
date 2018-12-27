@@ -1,5 +1,5 @@
 # meant to be applied using
-# kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 03-patch-shared-volume-and-splunk-uf.yml )"
+# kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 05-patch-shared-volume-and-splunk-uf.yml )"
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:

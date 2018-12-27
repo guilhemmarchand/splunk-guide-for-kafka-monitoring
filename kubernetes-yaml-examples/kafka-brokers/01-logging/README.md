@@ -91,7 +91,7 @@ kubectl create -f 04-kafka-brokers-log4j-configmap.yml
 
 The patch will update your Kafka broker statefulSet deployment and create the Splunk Universal Forwarder sidecar container.
 
-- Update the file 04-patch-shared-volume-and-splunk-uf.yml to match the name of your statefulSet deployment
+- Update the file 05-patch-shared-volume-and-splunk-uf.yml to match the name of your statefulSet deployment
 
 *This part must be changed to match the name of your statefulSet deployment:*
 
@@ -103,7 +103,7 @@ metadata:
 - Run the patch command and ensure you specify the name of your statefulSet deployment:
 
 ```
-kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
+kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 05-patch-shared-volume-and-splunk-uf.yml )"
 ```
 
 --------------------------------------------------------------------------------
