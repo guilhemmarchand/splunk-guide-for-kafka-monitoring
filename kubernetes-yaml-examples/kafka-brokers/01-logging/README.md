@@ -74,6 +74,8 @@ kubectl create -f 02-kafka-brokers-opts-configmap.yml
 ```
 kubectl create -f 03-kafka-brokers-log4j-configmap.yml
 
+```
+
 --------------------------------------------------------------------------------
 
 ### Step 4: (patch)
