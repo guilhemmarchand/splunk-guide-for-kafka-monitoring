@@ -9,6 +9,16 @@ spec:
   template:
     spec:
       containers:
+      - name: cp-kafka-connect-server
+        env:
+        - name: KAFKA_OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-connect-opts-configmap
+              key: kafka_connect_kafka_opts
+        volumeMounts:
+        - name: jolokia-jar
+          mountPath: "/opt/jolokia"
       - name: telegraf
         image: docker.io/telegraf:latest
         resources:
@@ -48,3 +58,6 @@ spec:
       - name: telegraf-config-kafka-connect
         configMap:
           name: telegraf-config-kafka-connect
+      - name: jolokia-jar
+        configMap:
+          name: jolokia-jar

@@ -10,6 +10,12 @@ spec:
     spec:
       containers:
       - name: cp-kafka-broker
+        env:
+        - name: KAFKA_OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-brokers-opts-configmap
+              key: kafka_brokers_kafka_opts
         volumeMounts:
         - name: jolokia-jar
           mountPath: "/opt/jolokia"

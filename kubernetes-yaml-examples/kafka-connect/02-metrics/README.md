@@ -40,7 +40,17 @@ kubectl create -f 01-telegraf-config-kafka-connect.yml
 
 --------------------------------------------------------------------------------
 
-### Step 2: (configMap)
+### Step 2: (replace KAFKA_OPTS configMap)
+
+KAFKA_OPTS environment variable is update to cover log4j and Jolokia:
+
+```
+kubectl replace -f 02-kafka-brokers-opts-configmap.yml
+```
+
+--------------------------------------------------------------------------------
+
+### Step 3: (Jolokia configMap)
 
 Ensure to have deployed the jolokia.jar, the easiest is using a configMap:
 
@@ -50,7 +60,7 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 --------------------------------------------------------------------------------
 
-### Step 3: (patch for volumes)
+### Step 4: (patch)
 
 - Update the file 03-patch-kafka-connect.yml and 04-patch-kafka-connect.yml to match the name of your deployment:
 
@@ -60,25 +70,11 @@ kubectl -n kafka get deployments.apps
 
 *Note: in sample, default used is confluent-oss-cp-kafka-connect*
 
-Modify manually your deployment to include the jolokia volume and the JVM starting agent, or even easier patch your existing deployment:
-
-```
-kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-connect --patch "$(cat 03-patch-kafka-connect.yml )"
-```
-
---------------------------------------------------------------------------------
-
-### Step 4: (patch for telegraf)
-
-Finally patch your deployment to start monitoring:
-
-- Modify 04-patch-kafka-brokers.yml to match the name of your deployment (default named zookeeper)
-
-- Patch your deployment (modify the name of your deployment and namespace in the kubectl command line if different):
-
 ```
 kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-connect --patch "$(cat 04-patch-kafka-connect.yml )"
 ```
+
+--------------------------------------------------------------------------------
 
 **To troubleshoot, useful kubectl commands:**
 

@@ -11,13 +11,10 @@ data:
     [agent]
       hostname = "$POD_NAME"
     [[outputs.http]]
-      ## URL is the address to send metrics to
       url = "https://$SPLUNK_HEC_URL/services/collector"
-      ## Use TLS but skip chain & host verification
       insecure_skip_verify = true
       data_format = "splunkmetric"
       splunkmetric_hec_routing = true
-      ## Additional HTTP headers
       [outputs.http.headers]
         Content-Type = "application/json"
         Authorization = "Splunk $SPLUNK_HEC_TOKEN"
