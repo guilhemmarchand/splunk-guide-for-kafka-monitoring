@@ -121,13 +121,13 @@ TA-zookeeper/
 *inputs.conf*
 
 ```
-[monitor:///var/log/zookeeper/server.log]
-disabled = true
+[monitor:///var/log/kafka/server.log]
+disabled = false
 index = kafka
 sourcetype = zookeeper:server
 
-[monitor:///var/log/zookeeper/*-gc.log*.current]
-disabled = true
+[monitor:///var/log/kafka/*-gc.log*.current]
+disabled = false
 index = kafka
 sourcetype = zookeeper:gc-log
 ```
