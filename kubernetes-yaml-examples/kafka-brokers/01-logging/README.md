@@ -1,7 +1,5 @@
 # Splunk Universal Forwarder sidecar container to monitor events logging of Kafka brokers in a Kubernetes statefulSet
 
-**See:**
-
 --------------------------------------------------------------------------------
 
 This configuration guide assumes that you have a Splunk Deployment Server (DS) that the Splunk Universal Forwarders sidecar containers will contact to retrieve its configuration such as inputs and outputs.
