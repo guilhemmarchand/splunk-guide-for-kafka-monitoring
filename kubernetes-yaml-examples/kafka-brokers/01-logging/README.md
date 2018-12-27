@@ -69,6 +69,8 @@ This configuration create the inputs for the Splunk Universal Forwarder to monit
 
 The default index is named "kafka", if you wish to change this, update the configMap before its creation.
 
+Make sure the index has been created in your Splunk indexing layer.
+
 *Create:*
 
 ```
