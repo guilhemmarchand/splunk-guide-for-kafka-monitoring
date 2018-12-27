@@ -60,7 +60,7 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 --------------------------------------------------------------------------------
 
-### Step 4: (patch for volumes)
+### Step 4: (patch)
 
 - Update the file 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet deployment:
 
@@ -71,7 +71,7 @@ kubectl -n kafka get statefulsets.apps
 *Note: in sample, default used is confluent-oss-cp-kafka*
 
 ```
-kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 03-patch-kafka-brokers-statefulset.yml )"
+kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-kafka-brokers-statefulset.yml )"
 ```
 
 --------------------------------------------------------------------------------
