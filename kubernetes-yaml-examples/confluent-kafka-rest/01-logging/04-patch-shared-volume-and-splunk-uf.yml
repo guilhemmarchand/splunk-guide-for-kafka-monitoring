@@ -23,7 +23,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: confluent-kafka-rest-opts-configmap
-              key: kafka_connect_kafka_opts
+              key: kafka_rest_kafkarest_opts
         volumeMounts:
         - name: confluent-kafka-rest-log4j-configmap
           mountPath: "/usr/local/share/kafka"
