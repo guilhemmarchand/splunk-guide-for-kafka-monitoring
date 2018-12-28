@@ -15,7 +15,7 @@ spec:
         configMap:
           name: confluent-kafka-rest-log4j-configmap
       containers:
-      - name: cp-confluent-kafka-rest-server
+      - name: cp-kafka-rest-server
         env:
         - name: LOG_DIR
           value: "/var/log/kafka"
