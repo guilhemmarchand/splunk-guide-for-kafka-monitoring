@@ -210,8 +210,8 @@ Monitoring Kafka in Kubernetes
 
 *metrics collection diagram - sidecar containers:*
 
-.. image:: img/draw.io/Kubernetes-deployment.png
-   :alt: Kubernetes-deployment.png
+.. image:: img/draw.io/k8s-metrics.png
+   :alt: k8s-metrics.png
    :align: center
 
 Tips for running Kafka in Kubernetes
