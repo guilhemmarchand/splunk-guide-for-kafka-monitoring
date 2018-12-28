@@ -40,7 +40,7 @@ kubectl create -f ../../yaml_git_ignored/global-splunk-uf-secrets.yml
 
 - Ensure you have created a configMap to reference the Splunk deployment server URL:
 
-*../yaml_git_ignored/global-splunk-uf-config.yml:*
+*../../yaml_git_ignored/global-splunk-uf-config.yml:*
 
 ```
 apiVersion: v1
