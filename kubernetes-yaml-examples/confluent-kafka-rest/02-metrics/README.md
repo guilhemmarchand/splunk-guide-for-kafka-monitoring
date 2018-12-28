@@ -10,7 +10,7 @@ https://splunk-guide-for-kafka-monitoring.readthedocs.io/en/latest/chapter2_metr
 
 - Ensure you have created a configMap to reference the environment name, Splunk HEC url and token values that will be used by all your pods:
 
-*../yaml_git_ignored/global-config.yml:*
+*../../yaml_git_ignored/global-config.yml:*
 
 ```
 apiVersion: v1
@@ -27,7 +27,7 @@ data:
 *Create:*
 
 ```
-kubectl create -f ../yaml_git_ignored/global-config.yml
+kubectl create -f ../../yaml_git_ignored/global-config.yml
 ```
 
 The "splunk_hec_url" and "splunk_hec_token" are automatically substituted by the according values.
