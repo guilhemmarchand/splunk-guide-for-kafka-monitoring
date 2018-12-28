@@ -15,7 +15,7 @@ http://splunk-guide-for-kafka-monitoring.readthedocs.io
 
 - Chapter 1: Event logging
 - Chapter 2: Metrics and performance
-- Chapter 3: Alerting
+- Chapter 3: Alerting and services monitoring
 
 ![screen1](./docs/img/coremain.png)
 

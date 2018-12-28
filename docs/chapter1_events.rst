@@ -12,8 +12,8 @@ The full and dedicated documentation site:
 
 https://ta-kafka-streaming-platform.readthedocs.io
 
-Getting logs in
-***************
+Splunk configuration
+********************
 
 1. Index creation
 =================
@@ -23,12 +23,31 @@ By default, the Technology Addon uses an event indexed named ``kafka``.
 
 Ensure that the index was created in your environment before you continue.
 
-2. Verify the log4j format in used
+You can change the index name by customising the inputs provided by the Splunk application.
+
+2. Deployment of the Technical Addon to the Splunk core infrastructure
+======================================================================
+
+**Deploy the Technology Addon to:**
+
+* **The indexers** (cluster master then push the cluster bundle for clusters, as a normal application for a standalone server)
+* **Heavy Forwarders** if they are being used as intermediate forwarders before reaching the indexers
+* **Search Heads** (SHC deployer if running a search head cluster, as a normal application for a standalone server)
+* **Deployment Server** in deployment-apps to be pushed to the Universal Forwarders
+
+Events logging in dedicated servers (bare metal, VMs)
+*****************************************************
+
+.. image:: img/dedicated-server.png
+   :alt: dedicated-server.png
+   :align: center
+
+1. Verify the log4j format in used
 ==================================
 
-The Technology Addon uses the most optimised configuration to guarantee a proper parsing of the events, specially with a good multi-line management.
+The Technology Addon uses the most optimised configuration to guarantee a proper parsing of the events, specially with a perfect management of multi-line events. (such as Java stacktraces)
 
-Sourcetype definition assume the usage of the default format used by Kafka and Confluent Enterprise/OSS
+**Sourcetype definitions assume the usage of the default format used by Kafka and Confluent Enterprise/OSS**
 
 *Example:*
 
@@ -46,16 +65,6 @@ Sourcetype definition assume the usage of the default format used by Kafka and C
 If you are relying on a different log format, copy the default/props.conf to local/ and achieve the relevant customization.
 
 *Notes: The JVM garbage collector has its own format that is unlikely to be customized*
-
-3. Deployment to the Splunk core infrastructure
-===============================================
-
-**Deploy the Technology Addon to:**
-
-* The indexing layer (cluster master then push the cluster bundle for clusters, as a normal application for a standalone server)
-* Heavy Forwarders if they are being used as intermediate forwarders before reaching the indexers
-* Search Heads (SHC deployer if running a search head cluster, as a normal application for a standalone server)
-* Deployment Server in deployment-apps to be pushed to the Universal Forwarders
 
 4. Verify and collect log locations of the Kafka components
 ===========================================================
@@ -325,3 +334,21 @@ Next verification is verifying the eventtypes definition, example:
 .. image:: img/chapter1_getting_logs.png
    :alt: chapter1_getting_logs.png
    :align: center
+
+
+Events logging in Kubernetes
+****************************
+
+.. image:: img/kubernetes-logo.png
+   :alt: kubernetes-logo.png
+   :align: center
+
+*events logging collection diagram - sidecar Splunk Universal Forwarder containers:*
+
+.. image:: img/draw.io/k8s-logging.png
+   :alt: k8s-logging.png
+   :align: center
+
+
+
+
