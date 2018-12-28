@@ -9,6 +9,16 @@ spec:
   template:
     spec:
       containers:
+      - name: cp-ksql-server
+        env:
+        - name: KSQL_OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: confluent-ksql-server-opts-configmap
+              key: ksql_server_ksql_opts
+        volumeMounts:
+        - name: jolokia-jar
+          mountPath: "/opt/jolokia"
       - name: telegraf
         image: docker.io/telegraf:latest
         resources:
@@ -45,6 +55,12 @@ spec:
         - name: telegraf-config-confluent-ksql-server
           mountPath: /etc/telegraf
       volumes:
+      - name: confluent-ksql-server-opts-configmap
+        configMap:
+          name: confluent-ksql-server-opts-configmap
       - name: telegraf-config-confluent-ksql-server
         configMap:
           name: telegraf-config-confluent-ksql-server
+      - name: jolokia-jar
+        configMap:
+          name: jolokia-jar
