@@ -1,0 +1,7 @@
+kind: ConfigMap
+metadata:
+  name: confluent-schema-registry-opts-configmap
+  namespace: kafka
+apiVersion: v1
+data:
+  schema_registry_opts: "-javaagent:/opt/jolokia/jolokia.jar=port=8778,host=0.0.0.0 -Dlog4j.configuration=file:/usr/local/share/kafka/log4j.properties"

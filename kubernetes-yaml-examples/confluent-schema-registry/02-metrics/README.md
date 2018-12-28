@@ -40,7 +40,17 @@ kubectl create -f 01-telegraf-config-confluent-schema-registry.yml
 
 --------------------------------------------------------------------------------
 
-### Step 2: (configMap)
+### Step 2: (replace SCHEMA_REGISTRY_OPTS configMap)
+
+SCHEMA_REGISTRY_OPTS environment variable is updated to cover log4j and Jolokia:
+
+```
+kubectl replace -f 02-confluent-schema-registry-opts-configmap.yml
+```
+
+--------------------------------------------------------------------------------
+
+### Step 3: (Jolokia configMap)
 
 Ensure to have deployed the jolokia.jar, the easiest is using a configMap:
 
@@ -50,25 +60,7 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 --------------------------------------------------------------------------------
 
-### Step 3: (patch for volumes)
-
-- Update the file 03-patch-confluent-schema-registry.yml and 04-patch-confluent-schema-registry.yml to match the name of your deployment:
-
-```
-kubectl -n kafka get deployments.apps
-```
-
-*Note: in sample, default used is confluent-oss-cp-kafka*
-
-Modify manually your deployment to include the jolokia volume and the JVM starting agent, or even easier patch your existing deployment:
-
-```
-kubectl --namespace kafka patch deployment confluent-oss-cp-schema-registry --patch "$(cat 03-patch-confluent-schema-registry.yml )"
-```
-
---------------------------------------------------------------------------------
-
-### Step 4: (patch for telegraf)
+### Step 4: (patch)
 
 Finally patch your deployment to start monitoring:
 
@@ -79,6 +71,8 @@ Finally patch your deployment to start monitoring:
 ```
 kubectl --namespace kafka patch deployment confluent-oss-cp-schema-registry --patch "$(cat 04-patch-confluent-schema-registry.yml )"
 ```
+
+--------------------------------------------------------------------------------
 
 **To troubleshoot, useful kubectl commands:**
 

@@ -9,6 +9,16 @@ spec:
   template:
     spec:
       containers:
+      - name: cp-schema-registry-server
+        env:
+        - name: SCHEMA_REGISTRY_OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: confluent-schema-registry-opts-configmap
+              key: schema_registry_opts
+        volumeMounts:
+        - name: jolokia-jar
+          mountPath: "/opt/jolokia"
       - name: telegraf
         image: docker.io/telegraf:latest
         resources:
@@ -45,6 +55,12 @@ spec:
         - name: telegraf-config-confluent-schema-registry
           mountPath: /etc/telegraf
       volumes:
+      - name: confluent-schema-registry-opts-configmap
+        configMap:
+          name: confluent-schema-registry-opts-configmap
       - name: telegraf-config-confluent-schema-registry
         configMap:
           name: telegraf-config-confluent-schema-registry
+      - name: jolokia-jar
+        configMap:
+          name: jolokia-jar
