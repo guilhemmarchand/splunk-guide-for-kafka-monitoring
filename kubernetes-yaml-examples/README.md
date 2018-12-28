@@ -2,9 +2,13 @@
 
 ## This direction contains yaml configuration examples to monitor Kafka and Confluent infrastructure in Kubernetes
 
-*metrics collection diagram - sidecar containers:*
+*metrics collection diagram - sidecar containers metrics collection by Telegraf to Jolokia:*
 
-![screen1](../docs/img/draw.io/Kubernetes-deployment.png)
+![screen1](../docs/img/draw.io/k8s-metrics.png)
+
+*events logging ingestion diagram - sidecar containers Splunk Universal Forwarders reading logs in pod shared volumes:*
+
+![screen1](../docs/img/draw.io/k8s-logging.png)
 
 --------------------------------------------------------------------------------
 

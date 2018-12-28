@@ -36,10 +36,16 @@ Welcome to the unified guide for Kafka and Confluent monitoring with Splunk
    :alt: overview_diagram
    :align: center
 
-*Kubernetes metrics collection diagram - sidecar containers:*
+*Kubernetes metrics collection diagram - sidecar containers metrics collection by Telegraf to Jolokia:*
 
-.. image:: img/draw.io/Kubernetes-deployment.png
-   :alt: Kubernetes-deployment.png
+.. image:: img/draw.io/k8s-metrics.png
+   :alt: overview_diagram
+   :align: center
+
+*Kubernetes events logging ingestion diagram - sidecar containers Splunk Universal Forwarders reading logs in pod shared volumes:*
+
+.. image:: img/draw.io/k8s-logging.png
+   :alt: overview_diagram
    :align: center
 
 Implementation:
