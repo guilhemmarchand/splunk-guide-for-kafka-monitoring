@@ -1,6 +1,6 @@
 # Kubernetes configuration examples
 
-## This direction contains yaml configuration examples to monitor Kafka and Confluent infrastructure in Kubernetes
+## This repository provides yaml configuration and instructions to monitor Kafka and Confluent infrastructure in Kubernetes
 
 *metrics collection diagram - sidecar containers metrics collection by Telegraf to Jolokia:*
 
