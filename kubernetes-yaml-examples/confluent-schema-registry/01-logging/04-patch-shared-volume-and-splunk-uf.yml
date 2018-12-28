@@ -1,0 +1,60 @@
+# meant to be applied using
+# kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: confluent-oss-cp-schema-registry
+  namespace: kafka
+spec:
+  template:
+    spec:
+      volumes:
+      - name: shared-data
+        emptyDir: {}
+      - name: confluent-schema-registry-log4j-configmap
+        configMap:
+          name: confluent-schema-registry-log4j-configmap
+      containers:
+      - name: cp-schema-registry-server
+        env:
+        - name: LOG_DIR
+          value: "/var/log/kafka"
+        - name: SCHEMA_REGISTRY_OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: confluent-schema-registry-opts-configmap
+              key: schema_registry_opts
+        volumeMounts:
+        - name: confluent-schema-registry-log4j-configmap
+          mountPath: "/usr/local/share/kafka"
+        - name: shared-data
+          mountPath: "/var/log/kafka"
+      - name: splunk
+        image: splunk/universalforwarder:latest
+        env:
+        - name: SPLUNK_START_ARGS
+          value: "--accept-license"
+        - name: SPLUNK_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: global-splunk-uf-secrets
+              key: splunk_password
+        - name: SPLUNK_DEPLOYMENT_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: global-splunk-uf-config
+              key: splunk_deployment_server
+        - name: SPLUNK_S2S_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: global-splunk-uf-config
+              key: splunk_s2s_port
+        resources:
+          requests:
+            cpu: 10m
+            memory: 256Mi
+          limits:
+            memory: 256Mi
+        volumeMounts:
+        - name: shared-data
+          mountPath: "/var/log/kafka"
