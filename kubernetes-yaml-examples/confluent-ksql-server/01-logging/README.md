@@ -121,15 +121,15 @@ TA-confluent-ksql-server/
 *inputs.conf*
 
 ```
-[monitor:///var/log/kafka/kafka-rest.log]
+[monitor:///var/log/kafka/ksql-server.log]
 disabled = false
 index = kafka
-sourcetype = kafka:kafka-rest
+sourcetype = kafka:ksql-server
 
 [monitor:///var/log/kafka/*-gc.log*.current]
 disabled = false
 index = kafka
-sourcetype = kafka:kafka-rest:gc-log
+sourcetype = kafka:ksql-server:gc-log
 ```
 
 *props.conf*
