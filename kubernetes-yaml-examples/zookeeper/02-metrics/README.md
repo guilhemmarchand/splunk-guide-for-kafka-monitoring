@@ -42,19 +42,24 @@ kubectl create -f 01-telegraf-config-zookeeper.yml
 
 ### Step 2: (patch for telegraf)
 
-- Update the file 02-patch-zookeeper-statefulset.yml to match the name of your statefulSet deployment:
+The patch will update your Zookeeper statefulSet deployment and create the Splunk Universal Forwarder sidecar container.
+
+- Update the file 02-patch-zookeeper-statefulset.yml to match the name of your statefulSet deployment
+
+*This part must be changed to match the name of your statefulSet deployment:*
 
 ```
-kubectl -n kafka get statefulsets.apps
+metadata:
+  name: confluent-oss-cp-zookeeper
 ```
 
-*Note: in sample, default used is confluent-oss-cp-zookeeper*
-
-- Patch your statefulSet (modify the name of your statefulSet and namespace in the kubectl command line if different):
+- Run the patch command and ensure you specify the name of your statefulSet deployment:
 
 ```
 kubectl --namespace kafka patch statefulset confluent-oss-cp-zookeeper --patch "$(cat 02-patch-zookeeper-statefulset.yml )"
 ```
+
+--------------------------------------------------------------------------------
 
 **To troubleshoot, useful kubectl commands:**
 

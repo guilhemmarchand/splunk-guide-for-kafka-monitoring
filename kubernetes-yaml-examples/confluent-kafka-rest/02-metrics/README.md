@@ -62,15 +62,24 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 ### Step 4: (patch)
 
-Finally patch your deployment to start monitoring:
+The patch will update your kafka-rest Deployment and create the Telegraf sidecar container.
 
-- Modify 04-patch-confluent-kafka-rest.yml to match the name of your deployment (default named zookeeper)
+- Update the file 04-patch-confluent-kafka-rest.yml to match the name of your statefulSet deployment
 
-- Patch your deployment (modify the name of your deployment and namespace in the kubectl command line if different):
+*This part must be changed to match the name of your Deployment:*
 
 ```
-kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-rest --patch "$(cat 04-patch-confluent-kafka-rest.yml )"
+metadata:
+  name: confluent-oss-cp-kafka-rest
 ```
+
+- Run the patch command and ensure you specify the name of your Deployment:
+
+```
+kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-rest --patch "$(cat04-patch-confluent-kafka-rest.yml )"
+```
+
+--------------------------------------------------------------------------------
 
 **To troubleshoot, useful kubectl commands:**
 

@@ -62,13 +62,18 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 ### Step 4: (patch)
 
-- Update the file 03-patch-kafka-connect.yml and 04-patch-kafka-connect.yml to match the name of your deployment:
+The patch will update your Kafka Connect Deployment and create the Telegraf sidecar container.
+
+- Update the file 04-patch-kafka-connect.yml to match the name of your Deployment
+
+*This part must be changed to match the name of your Deployment:*
 
 ```
-kubectl -n kafka get deployments.apps
+metadata:
+  name: confluent-oss-cp-kafka
 ```
 
-*Note: in sample, default used is confluent-oss-cp-kafka-connect*
+- Run the patch command and ensure you specify the name of your Deployment:
 
 ```
 kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-connect --patch "$(cat 04-patch-kafka-connect.yml )"

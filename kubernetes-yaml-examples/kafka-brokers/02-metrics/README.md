@@ -62,13 +62,18 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 ### Step 4: (patch)
 
-- Update the file 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet deployment:
+The patch will update your Kafka broker statefulSet deployment and create the Telegraf sidecar container.
+
+- Update the file 04-patch-kafka-brokers-statefulset.yml to match the name of your statefulSet deployment
+
+*This part must be changed to match the name of your statefulSet deployment:*
 
 ```
-kubectl -n kafka get statefulsets.apps
+metadata:
+  name: confluent-oss-cp-kafka
 ```
 
-*Note: in sample, default used is confluent-oss-cp-kafka*
+- Run the patch command and ensure you specify the name of your statefulSet deployment:
 
 ```
 kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-kafka-brokers-statefulset.yml )"
