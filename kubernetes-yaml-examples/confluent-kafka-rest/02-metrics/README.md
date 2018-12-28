@@ -64,7 +64,7 @@ kubectl create -f ../../Jolokia/01-jolokia-jar-configmap.yml
 
 The patch will update your kafka-rest Deployment and create the Telegraf sidecar container.
 
-- Update the file 04-patch-confluent-kafka-rest.yml to match the name of your statefulSet deployment
+- Update the file 04-patch-confluent-kafka-rest.yml to match the name of your Deployment
 
 *This part must be changed to match the name of your Deployment:*
 
