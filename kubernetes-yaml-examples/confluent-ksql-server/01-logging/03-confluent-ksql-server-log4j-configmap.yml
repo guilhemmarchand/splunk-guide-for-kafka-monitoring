@@ -1,0 +1,30 @@
+kind: ConfigMap
+metadata:
+  name: confluent-ksql-server-log4j-configmap
+  namespace: kafka
+apiVersion: v1
+data:
+
+  log4j.properties: |+
+    log4j.rootLogger=INFO, stdout, FILE
+
+    log4j.appender.FILE=org.apache.log4j.DailyRollingFileAppender
+    log4j.appender.FILE.DatePattern='.'yyyy-MM-dd-HH
+    log4j.appender.FILE.File=${ksql.log.dir}/ksql-server.log
+    log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+    log4j.appender.FILE.layout.ConversionPattern=[%d] %p %m (%c)%n
+
+    log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+    log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+    log4j.appender.stdout.layout.ConversionPattern=[%d] %p %m (%c:%L)%n
+
+    log4j.appender.streams=org.apache.log4j.ConsoleAppender
+    log4j.appender.streams.layout=org.apache.log4j.PatternLayout
+    log4j.appender.streams.layout.ConversionPattern=[%d] %p %m (%c:%L)%n
+
+    log4j.logger.kafka=ERROR, stdout
+    log4j.logger.org.apache.kafka.streams=INFO, streams
+    log4j.additivity.org.apache.kafka.streams=false
+    log4j.logger.org.apache.zookeeper=ERROR, stdout
+    log4j.logger.org.apache.kafka=ERROR, stdout
+    log4j.logger.org.I0Itec.zkclient=ERROR, stdout
