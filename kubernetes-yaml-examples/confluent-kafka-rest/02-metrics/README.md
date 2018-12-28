@@ -76,7 +76,7 @@ metadata:
 - Run the patch command and ensure you specify the name of your Deployment:
 
 ```
-kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-rest --patch "$(cat04-patch-confluent-kafka-rest.yml )"
+kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-rest --patch "$(cat 04-patch-confluent-kafka-rest.yml )"
 ```
 
 --------------------------------------------------------------------------------
