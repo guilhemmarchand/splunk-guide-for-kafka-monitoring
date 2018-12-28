@@ -1,4 +1,4 @@
-# Splunk Universal Forwarder sidecar container to monitor events logging of Kafka Connect in a Kubernetes statefulSet
+# Splunk Universal Forwarder sidecar container for Kafka Connect events logging in a Kubernetes Deployment
 
 --------------------------------------------------------------------------------
 
@@ -6,7 +6,7 @@ This configuration guide assumes that you have a Splunk Deployment Server (DS) t
 
 Running the Splunk Universal Forwarder in a sidecar container is the most powerful configuration providing all the features from Splunk and Kubernetes.
 
-The containers automatically share a volume where logs are being created by Kafka, and read by Splunk.
+The containers automatically share a volume where logs are being created by Kafka Connect, and read by Splunk.
 
 ### Step 1: (Splunk secrets and configMap)
 
@@ -40,7 +40,7 @@ kubectl create -f ../../yaml_git_ignored/global-splunk-uf-secrets.yml
 
 - Ensure you have created a configMap to reference the Splunk deployment server URL:
 
-*../yaml_git_ignored/global-splunk-uf-config.yml:*
+*../../yaml_git_ignored/global-splunk-uf-config.yml:*
 
 ```
 apiVersion: v1
@@ -84,18 +84,18 @@ kubectl create -f 03-kafka-connect-log4j-configmap.yml
 
 ### Step 4: (patch)
 
-The patch will update your Kafka Connect statefulSet deployment and create the Splunk Universal Forwarder sidecar container.
+The patch will update your Kafka Connect Deployment and create the Splunk Universal Forwarder sidecar container.
 
-- Update the file 04-patch-shared-volume-and-splunk-uf.yml to match the name of your statefulSet deployment
+- Update the file 04-patch-shared-volume-and-splunk-uf.yml to match the name of your Deployment
 
-*This part must be changed to match the name of your statefulSet deployment:*
+*This part must be changed to match the name of your Deployment:*
 
 ```
 metadata:
   name: confluent-oss-cp-kafka
 ```
 
-- Run the patch command and ensure you specify the name of your statefulSet deployment:
+- Run the patch command and ensure you specify the name of your Deployment:
 
 ```
 kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-connect --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
