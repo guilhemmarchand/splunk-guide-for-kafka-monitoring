@@ -84,11 +84,11 @@ kubectl create -f 03-confluent-kafka-rest-log4j-configmap.yml
 
 ### Step 4: (patch)
 
-The patch will update your Kafka Connect statefulSet deployment and create the Splunk Universal Forwarder sidecar container.
+The patch will update your kafka-rest Deployment and create the Splunk Universal Forwarder sidecar container.
 
 - Update the file 04-patch-shared-volume-and-splunk-uf.yml to match the name of your statefulSet deployment
 
-*This part must be changed to match the name of your statefulSet deployment:*
+*This part must be changed to match the name of your Deployment:*
 
 ```
 metadata:
