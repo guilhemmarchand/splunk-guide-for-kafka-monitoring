@@ -1,0 +1,7 @@
+kind: ConfigMap
+metadata:
+  name: kafka-connect-opts-configmap
+  namespace: kafka
+apiVersion: v1
+data:
+  kafka_rest_kafkarest_opts: "-Dlog4j.configuration=file:/usr/local/share/kafka/log4j.properties"
