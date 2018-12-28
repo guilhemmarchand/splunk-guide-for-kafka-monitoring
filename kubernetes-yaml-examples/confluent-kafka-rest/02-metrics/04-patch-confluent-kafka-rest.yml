@@ -61,3 +61,6 @@ spec:
       - name: telegraf-config-confluent-kafka-rest
         configMap:
           name: telegraf-config-confluent-kafka-rest
+      - name: jolokia-jar
+        configMap:
+          name: jolokia-jar
