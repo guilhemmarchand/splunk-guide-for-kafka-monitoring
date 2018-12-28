@@ -1,6 +1,6 @@
 kind: ConfigMap
 metadata:
-  name: kafka-connect-opts-configmap
+  name: confluent-kafka-rest-opts-configmap
   namespace: kafka
 apiVersion: v1
 data:

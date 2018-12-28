@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: confluent-oss-cp-kafka-connect
+  name: confluent-oss-cp-kafka-rest
   namespace: kafka
 spec:
   template:
@@ -11,21 +11,21 @@ spec:
       volumes:
       - name: shared-data
         emptyDir: {}
-      - name: kafka-connect-log4j-configmap
+      - name: confluent-kafka-rest-log4j-configmap
         configMap:
-          name: kafka-connect-log4j-configmap
+          name: confluent-kafka-rest-log4j-configmap
       containers:
-      - name: cp-kafka-connect-server
+      - name: cp-confluent-kafka-rest-server
         env:
         - name: LOG_DIR
           value: "/var/log/kafka"
-        - name: KAFKA_OPTS
+        - name: KAFKAREST_OPTS
           valueFrom:
             configMapKeyRef:
-              name: kafka-connect-opts-configmap
+              name: confluent-kafka-rest-opts-configmap
               key: kafka_connect_kafka_opts
         volumeMounts:
-        - name: kafka-connect-log4j-configmap
+        - name: confluent-kafka-rest-log4j-configmap
           mountPath: "/usr/local/share/kafka"
         - name: shared-data
           mountPath: "/var/log/kafka"
