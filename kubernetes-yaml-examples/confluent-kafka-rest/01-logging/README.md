@@ -1,4 +1,4 @@
-# Splunk Universal Forwarder sidecar container to monitor events logging of Confluent kafka-rest in a Kubernetes deployment
+# Splunk Universal Forwarder sidecar container for events Confluent kafka-rest logging in a Kubernetes deployment
 
 --------------------------------------------------------------------------------
 
