@@ -336,12 +336,34 @@ Next verification is verifying the eventtypes definition, example:
    :align: center
 
 
-Events logging in Kubernetes
-****************************
+Events logging in Kubernetes and docker containers
+**************************************************
 
 .. image:: img/kubernetes-logo.png
    :alt: kubernetes-logo.png
    :align: center
+
+A perfect events logging management requires a different approach in a Kubernetes deployment.
+
+As a basis, each container produces output logging in its standard output, which you can index in Splunk using the Splunk Technical Addon for Kubernetes:
+
+https://splunkbase.splunk.com/app/3991
+
+However, the multi-line management and the differentiation between the different parts of the sub systems logging is a dead end path. (Think about Java stacktraces, garbage collector logging, etc.)
+
+**The approach provided is a different approach that is entirely in the philosophy of Kubernetes and Splunk, by using the Kubernetes pods capabilities:**
+
+- Each Kafka or Confluent container running in a statefulSet or Deployment is updated to produce logs locally on the container (in addition with its standard output)
+
+- A Splunk Universal Forwarder is created and configured to run in the each pod, which is called a sidecar container (running Splunk Forwarders in a container is now fully supported)
+
+- Splunk Universal Forwarders are connected to your Splunk Deployment infrastructure, and managed just as usual
+
+- The containers running in a same pod automatically share the log directory as a volume, Kafka component produces logs, Splunk monitors these
+
+- Anytime the pod is destroyed and re-created, the Splunk containers is automatically re-created and configured
+
+**This is a resilient, scalable and reliable approach that is entirely compatible, relevant and standard with Kubernetes, Kafka and Confluent components, and Splunk.**
 
 *events logging collection diagram - sidecar Splunk Universal Forwarder containers:*
 
@@ -349,6 +371,44 @@ Events logging in Kubernetes
    :alt: k8s-logging.png
    :align: center
 
+Zookeeper monitoring
+====================
 
+Link: `Zookeeper logging`_
 
+.. _Zookeeper logging: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper/01-logging
 
+Kafka Brokers monitoring
+========================
+
+Link: `Kafka Brokers logging`_
+
+.. _Kafka Brokers logging: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers/01-logging
+
+Kafka Connect monitoring
+========================
+
+Link: `Kafka Connect logging`_
+
+.. _Kafka Connect logging: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-connect/01-logging
+
+Confluent schema-registry monitoring
+====================================
+
+Link: `Confluent shema-registry logging`_
+
+.. _Confluent shema-registry logging: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-schema-registry/01-logging
+
+Confluent kafka-rest monitoring
+===============================
+
+Link: `Confluent kafka-rest logging`_
+
+.. _Confluent kafka-rest logging: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-kafka-rest/01-logging
+
+Confluent ksql-server monitoring
+================================
+
+Link: `Confluent ksql-server logging`_
+
+.. _Confluent ksql-server logging: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-ksql-server/01-logging

@@ -782,8 +782,8 @@ kafka-rest
 
 https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-kafka-rest
 
-Deploying Telegraf
-==================
+Monitoring the components metrics with Telegraf
+===============================================
 
 .. image:: img/telegraf-logo.png
    :alt: telegraf-logo.png
@@ -803,282 +803,41 @@ In addition, this is an easy "build and forget" approach, each container monitor
 Zookeeper monitoring
 --------------------
 
-**See:**
+Link: `Zookeeper metrics`_
 
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper
+.. _Zookeeper metrics: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/zookeeper/02-metrics
 
 Kafka Brokers monitoring
 ------------------------
 
-**See:**
+Link: `Kafka Brokers metrics`_
 
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers
+.. _Kafka Brokers metrics: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers/02-metrics
 
 Kafka Connect monitoring
 ------------------------
 
-**See:**
+Link: `Kafka Connect metrics`_
 
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-connect
+.. _Kafka Connect metrics: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-connect/02-metrics
 
 Confluent schema-registry monitoring
 ------------------------------------
 
-**See:**
+Link: `Confluent shema-registry metrics`_
 
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-schema-registry
+.. _Confluent shema-registry metrics: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-schema-registry/02-metrics
 
 Confluent kafka-rest monitoring
 -------------------------------
 
-**See:**
+Link: `Confluent kafka-rest metrics`_
 
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-kafka-rest
+.. _Confluent kafka-rest metrics: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-kafka-rest/02-metrics
 
 Confluent ksql-server monitoring
 --------------------------------
 
-**See:**
+Link: `Confluent ksql-server metrics`_
 
-- https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-ksql-server
-
-Description of Kafka Brokers example
-------------------------------------
-
-*The following yaml example defines the configMap containing the telegraf.conf configuration for a Kafka broker:*
-
-*Notes:*
-
-- The url targeting the Splunk HEC and the token values need to be updated according to your environment
-- verify and modify namespace
-- observe the usage of a variable "$POD_NAME" in the Jolokia URL, this is required to be able to identify properly the instance
-
-https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/kafka-brokers
-
-**Create a global-config.yml configMap yaml files used to store and define the value for the Splunk url, token and the environment name:**
-
-*global-config.yml*
-
-::
-
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      namespace: kafka
-      name: global-config
-    data:
-      env: my-environment
-      splunk_hec_url: my-splunk-hec.domain.com:8088
-      splunk_hec_token: 205d43f1-2a31-4e60-a8b3-327eda49944a
-
-**Create:**
-
-::
-
-    kubectl create -f global-config.yml
-
-**Create your configMap for Telegraf:**
-
-*telegraf-config-kafka-broker.yml*
-
-::
-
-    kind: ConfigMap
-    metadata:
-      name: telegraf-config-kafka-broker
-      namespace: kafka
-    apiVersion: v1
-    data:
-
-      telegraf.conf: |+
-        [global_tags]
-          env = "$ENV"
-        [agent]
-          hostname = "$POD_NAME"
-        [[outputs.http]]
-          url = "https://$SPLUNK_HEC_URL/services/collector"
-          insecure_skip_verify = true
-          data_format = "splunkmetric"
-          splunkmetric_hec_routing = true
-          [outputs.http.headers]
-            Content-Type = "application/json"
-            Authorization = "Splunk $SPLUNK_HEC_TOKEN"
-            X-Splunk-Request-Channel = "$SPLUNK_HEC_TOKEN"
-
-        # Kafka JVM monitoring
-
-        [[inputs.jolokia2_agent]]
-          name_prefix = "kafka_"
-          urls = ["http://$POD_NAME:8778/jolokia"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "controller"
-          mbean        = "kafka.controller:name=*,type=*"
-          field_prefix = "$1."
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "replica_manager"
-          mbean        = "kafka.server:name=*,type=ReplicaManager"
-          field_prefix = "$1."
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "purgatory"
-          mbean        = "kafka.server:delayedOperation=*,name=*,type=DelayedOperationPurgatory"
-          field_prefix = "$1."
-          field_name   = "$2"
-
-        [[inputs.jolokia2_agent.metric]]
-          name     = "client"
-          mbean    = "kafka.server:client-id=*,type=*"
-          tag_keys = ["client-id", "type"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "network"
-          mbean        = "kafka.network:name=*,request=*,type=RequestMetrics"
-          field_prefix = "$1."
-          tag_keys     = ["request"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "network"
-          mbean        = "kafka.network:name=ResponseQueueSize,type=RequestChannel"
-          field_prefix = "ResponseQueueSize"
-          tag_keys     = ["name"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "network"
-          mbean        = "kafka.network:name=NetworkProcessorAvgIdlePercent,type=SocketServer"
-          field_prefix = "NetworkProcessorAvgIdlePercent"
-          tag_keys     = ["name"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "topics"
-          mbean        = "kafka.server:name=*,type=BrokerTopicMetrics"
-          field_prefix = "$1."
-
-        [[inputs.jolokia2_agent.metric]]
-          name         = "topic"
-          mbean        = "kafka.server:name=*,topic=*,type=BrokerTopicMetrics"
-          field_prefix = "$1."
-          tag_keys     = ["topic"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name       = "partition"
-          mbean      = "kafka.log:name=*,partition=*,topic=*,type=Log"
-          field_name = "$1"
-          tag_keys   = ["topic", "partition"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name       = "log"
-          mbean      = "kafka.log:name=LogFlushRateAndTimeMs,type=LogFlushStats"
-          field_name = "LogFlushRateAndTimeMs"
-          tag_keys   = ["name"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name       = "partition"
-          mbean      = "kafka.cluster:name=UnderReplicated,partition=*,topic=*,type=Partition"
-          field_name = "UnderReplicatedPartitions"
-          tag_keys   = ["topic", "partition"]
-
-        [[inputs.jolokia2_agent.metric]]
-          name     = "request_handlers"
-          mbean    = "kafka.server:name=RequestHandlerAvgIdlePercent,type=KafkaRequestHandlerPool"
-          tag_keys = ["name"]
-
-        # JVM garbage collector monitoring
-        [[inputs.jolokia2_agent.metric]]
-          name     = "jvm_garbage_collector"
-          mbean    = "java.lang:name=*,type=GarbageCollector"
-          paths    = ["CollectionTime", "CollectionCount", "LastGcInfo"]
-          tag_keys = ["name"]
-
-**Apply:**
-
-::
-
-    kubectl create -f telegraf-config-kafka-broker.yml
-
-*The following yaml create the additional container within the StatefulSet:*
-
-*Notes:*
-
-- The "name: kafka" in the example bellow matches the name of the StatefulSet's pods
-- The namespace needs to be modified depending on the configuration
-- The "POD_NAME" variable used in the Jolokia URL is automatically defined from Kubernetes metadata
-
-*telegraf-kafka-broker.yml*
-
-::
-
-    # meant to be applied using
-    # kubectl --namespace kafka patch statefulset kafka --patch "$(cat filename.yml )"
-    apiVersion: apps/v1
-    kind: StatefulSet
-    metadata:
-      name: kafka
-      namespace: kafka
-    spec:
-      template:
-        spec:
-          containers:
-          - name: telegraf
-            image: docker.io/telegraf:latest
-            resources:
-              requests:
-                cpu: 10m
-                memory: 60Mi
-              limits:
-                memory: 120Mi
-            env:
-            - name: ENV
-              valueFrom:
-                configMapKeyRef:
-                  name: global-config
-                  key: env
-            - name: HOSTNAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: spec.nodeName
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: SPLUNK_HEC_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: global-config
-                  key: splunk_hec_url
-            - name: SPLUNK_HEC_TOKEN
-              valueFrom:
-                configMapKeyRef:
-                  name: global-config
-                  key: splunk_hec_token
-            volumeMounts:
-            - name: telegraf-config-kafka-broker
-              mountPath: /etc/telegraf
-          volumes:
-          - name: telegraf-config-kafka-broker
-            configMap:
-              name: telegraf-config-kafka-broker
-
-**Patch the statefulSet:**
-
-::
-
-    kubectl --namespace kafka patch statefulset kafka --patch "$(cat telegraf-kafka-broker.yml )"
-
-**To see logs from the side card container, example:**
-
-::
-
-    kubectl -n <namespace> logs <pod_name>-<pod_id> -c telegraf
-
-**To troubleshoot, useful kubectl commands:**
-
-::
-
-    kubectl -n kafka describe statefulSet.apps confluent-oss-cp-kafka
-    kubectl -n kafka get po
-    kubectl -n kafka describe po confluent-oss-cp-kafka-0
-    kubectl -n kafka logs confluent-oss-cp-kafka-0 -c telegraf
-    kubectl -n kafka logs confluent-oss-cp-kafka-0 -c cp-kafka-broker
-
+.. _Confluent ksql-server metrics: https://github.com/guilhemmarchand/splunk-guide-for-kafka-monitoring/tree/master/kubernetes-yaml-examples/confluent-ksql-server/02-metrics
