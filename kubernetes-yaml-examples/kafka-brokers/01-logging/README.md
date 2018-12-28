@@ -1,4 +1,4 @@
-# Splunk Universal Forwarder sidecar container to monitor events logging of Kafka brokers in a Kubernetes statefulSet
+# Splunk Universal Forwarder sidecar container for Kafka events logging of in a Kubernetes statefulSet
 
 --------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ kubectl create -f ../../yaml_git_ignored/global-splunk-uf-secrets.yml
 
 - Ensure you have created a configMap to reference the Splunk deployment server URL:
 
-*../yaml_git_ignored/global-splunk-uf-config.yml:*
+*../../yaml_git_ignored/global-splunk-uf-config.yml:*
 
 ```
 apiVersion: v1
@@ -49,7 +49,7 @@ metadata:
   namespace: kafka
   name: global-splunk-uf-config
 data:
-  splunk_deployment_server: "my-splunk-ds-url.amazonaws.com"
+  splunk_deployment_server: "my-splunk-ds-url.mydomain.com"
   splunk_s2s_port: "8089"
 ```
 
