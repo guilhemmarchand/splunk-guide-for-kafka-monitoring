@@ -6,7 +6,7 @@ This configuration guide assumes that you have a Splunk Deployment Server (DS) t
 
 Running the Splunk Universal Forwarder in a sidecar container is the most powerful configuration providing all the features from Splunk and Kubernetes.
 
-The containers share automatically share a volume where logs are being created by kafka-rest, and read by Splunk.
+The containers automatically share a volume where logs are being created by kafka-rest, and read by Splunk.
 
 ### Step 1: (Splunk secrets and configMap)
 
