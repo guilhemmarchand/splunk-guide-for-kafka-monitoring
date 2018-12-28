@@ -95,7 +95,7 @@ metadata:
   name: confluent-oss-cp-kafka-rest
 ```
 
-- Run the patch command and ensure you specify the name of your statefulSet deployment:
+- Run the patch command and ensure you specify the name of your Deployment:
 
 ```
 kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-rest --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
