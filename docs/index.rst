@@ -55,6 +55,7 @@ Implementation:
    :maxdepth: 2
 
    pre-requisites
+   kafka_on_k8s
    chapter1_events
    chapter2_metrics
    chapter3_alerting
