@@ -85,6 +85,13 @@ metadata:
   name: confluent-oss-cp-kafka
 ```
 
+*This part must be changed to match the name of the zookeeper container within the statefulSet deployment:*
+
+```
+      containers:
+      - name: cp-kafka-connect-server
+```
+
 - Run the patch command and ensure you specify the name of your Deployment:
 
 ```
