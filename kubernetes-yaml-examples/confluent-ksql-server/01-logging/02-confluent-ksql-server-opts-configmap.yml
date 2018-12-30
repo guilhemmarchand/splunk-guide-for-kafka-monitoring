@@ -1,7 +1,0 @@
-kind: ConfigMap
-metadata:
-  name: confluent-ksql-server-opts-configmap
-  namespace: kafka
-apiVersion: v1
-data:
-  ksql_server_ksql_opts: "-Dlog4j.configuration=file:/usr/local/share/kafka/log4j.properties"

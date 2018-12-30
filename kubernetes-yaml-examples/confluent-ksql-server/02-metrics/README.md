@@ -40,12 +40,12 @@ kubectl create -f 01-telegraf-config-confluent-ksql-server.yml
 
 --------------------------------------------------------------------------------
 
-### Step 2: (replace KSQL_OPTS configMap)
+### Step 2: (KSQL_OPTS configMap)
 
-KSQL_OPTS environment variable is updated to cover log4j and Jolokia:
+KSQL_OPTS environment variable is created Jolokia:
 
 ```
-kubectl replace -f 02-confluent-ksql-server-opts-configmap.yml
+kubectl create -f 02-confluent-ksql-server-opts-configmap.yml
 ```
 
 --------------------------------------------------------------------------------
@@ -71,6 +71,13 @@ The patch will update your Confluent ksql-server Deployment and create the Teleg
 ```
 metadata:
   name: confluent-oss-cp-ksql-server
+```
+
+*This part must be changed to match the name of the container:*
+
+```
+      containers:
+      - name: cp-ksql-server
 ```
 
 - Run the patch command and ensure you specify the name of your Deployment:

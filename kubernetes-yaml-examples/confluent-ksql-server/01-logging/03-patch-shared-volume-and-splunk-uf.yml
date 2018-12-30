@@ -1,5 +1,5 @@
 # meant to be applied using
-# kubectl --namespace kafka patch deployment confluent-oss-cp-ksql-server --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
+# kubectl --namespace kafka patch deployment confluent-oss-cp-ksql-server --patch "$(cat 03-patch-shared-volume-and-splunk-uf.yml )"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,13 +17,10 @@ spec:
       containers:
       - name: cp-ksql-server
         env:
+        - name: KSQL_LOG4J_OPTS
+          value: "-Dlog4j.configuration=file:/usr/local/share/kafka/log4j.properties"
         - name: LOG_DIR
           value: "/var/log/kafka"
-        - name: KSQL_OPTS
-          valueFrom:
-            configMapKeyRef:
-              name: confluent-ksql-server-opts-configmap
-              key: ksql_server_ksql_opts
         volumeMounts:
         - name: confluent-ksql-server-log4j-configmap
           mountPath: "/usr/local/share/kafka"
