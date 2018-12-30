@@ -73,6 +73,13 @@ metadata:
   name: confluent-oss-cp-kafka
 ```
 
+*This part must be changed to match the name of the container:*
+
+```
+      containers:
+      - name: cp-kafka-broker
+```
+
 - Run the patch command and ensure you specify the name of your statefulSet deployment:
 
 ```

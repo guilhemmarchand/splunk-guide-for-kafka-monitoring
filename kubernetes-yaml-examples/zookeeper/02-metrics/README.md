@@ -53,6 +53,13 @@ metadata:
   name: confluent-oss-cp-zookeeper
 ```
 
+*This part must be changed to match the name of the container:*
+
+```
+      containers:
+      - name: cp-zookeeper-server
+```
+
 - Run the patch command and ensure you specify the name of your statefulSet deployment:
 
 ```
