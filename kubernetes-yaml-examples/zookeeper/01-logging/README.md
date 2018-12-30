@@ -85,13 +85,6 @@ metadata:
   name: confluent-oss-cp-zookeeper
 ```
 
-*This part must be changed to match the name of your statefulSet deployment:*
-
-```
-metadata:
-  name: confluent-oss-cp-zookeeper
-```
-
 *This part must be changed to match the name of the zookeeper container within the statefulSet deployment:*
 
 ```
