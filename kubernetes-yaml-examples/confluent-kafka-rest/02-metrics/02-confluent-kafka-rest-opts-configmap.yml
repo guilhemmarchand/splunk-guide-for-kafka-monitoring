@@ -4,4 +4,4 @@ metadata:
   namespace: kafka
 apiVersion: v1
 data:
-  kafka_rest_kafkarest_opts: "-javaagent:/opt/jolokia/jolokia.jar=port=8778,host=0.0.0.0 -Dlog4j.configuration=file:/usr/local/share/kafka/log4j.properties"
+  kafka_rest_kafkarest_opts: "-javaagent:/opt/jolokia/jolokia.jar=port=8778,host=0.0.0.0"

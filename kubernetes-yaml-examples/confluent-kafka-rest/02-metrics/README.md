@@ -40,12 +40,12 @@ kubectl create -f 01-telegraf-config-confluent-kafka-rest.yml
 
 --------------------------------------------------------------------------------
 
-### Step 2: (replace KAFKAREST_OPTS configMap)
+### Step 2: (KAFKAREST_OPTS configMap)
 
-KAFKAREST_OPTS environment variable is updated to cover log4j and Jolokia:
+KAFKAREST_OPTS environment variable is created to cover Jolokia:
 
 ```
-kubectl replace -f 02-confluent-kafka-rest-opts-configmap.yml
+kubectl create -f 02-confluent-kafka-rest-opts-configmap.yml
 ```
 
 --------------------------------------------------------------------------------
@@ -71,6 +71,13 @@ The patch will update your kafka-rest Deployment and create the Telegraf sidecar
 ```
 metadata:
   name: confluent-oss-cp-kafka-rest
+```
+
+*This part must be changed to match the name of the container:*
+
+```
+      containers:
+      - name: cp-kafka-rest-server
 ```
 
 - Run the patch command and ensure you specify the name of your Deployment:
