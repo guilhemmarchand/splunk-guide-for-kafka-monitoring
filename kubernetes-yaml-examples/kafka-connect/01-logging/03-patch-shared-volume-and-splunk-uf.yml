@@ -17,13 +17,10 @@ spec:
       containers:
       - name: cp-kafka-connect-server
         env:
+        - name: KAFKA_LOG4J_OPTS
+          value: "-Dlog4j.configuration=file:/usr/local/share/kafka/log4j.properties"
         - name: LOG_DIR
           value: "/var/log/kafka"
-        - name: KAFKA_OPTS
-          valueFrom:
-            configMapKeyRef:
-              name: kafka-connect-opts-configmap
-              key: kafka_connect_kafka_opts
         volumeMounts:
         - name: kafka-connect-log4j-configmap
           mountPath: "/usr/local/share/kafka"
