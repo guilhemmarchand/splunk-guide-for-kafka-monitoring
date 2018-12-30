@@ -42,7 +42,7 @@ kubectl create -f 01-telegraf-config-kafka-connect.yml
 
 ### Step 2: (KAFKA_OPTS configMap)
 
-KAFKA_OPTS environment variable is updated to cover Jolokia:
+KAFKA_OPTS environment variable is created to cover Jolokia:
 
 ```
 kubectl create -f 02-kafka-connect-opts-configmap.yml
