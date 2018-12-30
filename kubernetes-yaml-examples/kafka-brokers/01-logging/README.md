@@ -85,7 +85,7 @@ metadata:
   name: confluent-oss-cp-kafka
 ```
 
-*This part must be changed to match the name of the zookeeper container within the statefulSet deployment:*
+*This part must be changed to match the name of the container:*
 
 ```
       containers:
