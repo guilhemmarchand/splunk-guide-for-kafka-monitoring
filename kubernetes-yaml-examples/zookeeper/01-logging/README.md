@@ -95,7 +95,7 @@ metadata:
 - Run the patch command and ensure you specify the name of your statefulSet deployment:
 
 ```
-kubectl --namespace kafka patch statefulset confluent-oss-cp-zookeeper --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
+kubectl --namespace kafka patch statefulset confluent-oss-cp-zookeeper --patch "$(cat 03-patch-shared-volume-and-splunk-uf.yml )"
 ```
 
 --------------------------------------------------------------------------------
