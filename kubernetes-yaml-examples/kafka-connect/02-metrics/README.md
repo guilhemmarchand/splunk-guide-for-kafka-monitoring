@@ -40,12 +40,12 @@ kubectl create -f 01-telegraf-config-kafka-connect.yml
 
 --------------------------------------------------------------------------------
 
-### Step 2: (replace KAFKA_OPTS configMap)
+### Step 2: (KAFKA_OPTS configMap)
 
-KAFKA_OPTS environment variable is updated tocover log4j and Jolokia:
+KAFKA_OPTS environment variable is updated to cover Jolokia:
 
 ```
-kubectl replace -f 02-kafka-connect-opts-configmap.yml
+kubectl create -f 02-kafka-connect-opts-configmap.yml
 ```
 
 --------------------------------------------------------------------------------
@@ -70,7 +70,14 @@ The patch will update your Kafka Connect Deployment and create the Telegraf side
 
 ```
 metadata:
-  name: confluent-oss-cp-kafka
+  name: confluent-oss-cp-kafka-connect
+```
+
+*This part must be changed to match the name of the zookeeper container within the statefulSet deployment:*
+
+```
+      containers:
+      - name: cp-kafka-connect-server
 ```
 
 - Run the patch command and ensure you specify the name of your Deployment:
