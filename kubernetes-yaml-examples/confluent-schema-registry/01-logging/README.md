@@ -149,6 +149,8 @@ kubectl -n kafka get po
 kubectl -n kafka describe po confluent-oss-cp-schema-registry-7f7b87b6f6-27ln4
 kubectl -n kafka logs confluent-oss-cp-schema-registry-7f7b87b6f6-27ln4 -c telegraf
 kubectl -n kafka logs confluent-oss-cp-schema-registry-7f7b87b6f6-27ln4 -c cp-schema-registry-server
+kubectl -n kafka exec -it confluent-oss-cp-schema-registry-7f7b87b6f6-27ln4 /bin/bash -c cp-schema-registry-server
+
 ```
 
 --------------

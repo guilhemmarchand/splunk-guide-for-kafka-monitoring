@@ -77,6 +77,7 @@ kubectl -n kafka describe po confluent-oss-cp-zoopeeker-0
 kubectl -n kafka logs confluent-oss-cp-zoopeeker-0 -c telegraf
 kubectl -n kafka logs confluent-oss-cp-zookeeper-0 -c cp-zookeeper-server
 kubectl -n kafka exec -it confluent-oss-cp-zookeeper-0 /bin/bash -c telegraf
+kubectl -n kafka exec -it confluent-oss-cp-zookeeper-0 /bin/bash -c cp-zookeeper-server
 ```
 
 --------------

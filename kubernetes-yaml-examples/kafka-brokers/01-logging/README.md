@@ -194,6 +194,7 @@ kubectl -n kafka get po
 kubectl -n kafka describe po confluent-oss-cp-kafka-0
 kubectl -n kafka logs confluent-oss-cp-kafka-0 -c splunk
 kubectl -n kafka logs confluent-oss-cp-kafka-0 -c cp-kafka-broker
+kubectl -n kafka exec -it confluent-oss-cp-kafka-0 /bin/bash -c cp-kafka-broker
 ```
 
 --------------

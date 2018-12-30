@@ -149,6 +149,7 @@ kubectl -n kafka get po
 kubectl -n kafka describe po confluent-oss-cp-kafka-rest-79dbfcf47d-vr44c
 kubectl -n kafka logs confluent-oss-cp-kafka-rest-79dbfcf47d-vr44c -c splunk
 kubectl -n kafka logs confluent-oss-cp-kafka-rest-79dbfcf47d-vr44c -c cp-kafka-rest-server
+kubectl -n kafka exec -it confluent-oss-cp-kafka-rest-79dbfcf47d-vr44c /bin/bash -c cp-kafka-rest-server
 ```
 
 --------------

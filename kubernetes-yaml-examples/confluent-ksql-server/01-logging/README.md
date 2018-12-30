@@ -149,6 +149,7 @@ kubectl -n kafka get po
 kubectl -n kafka describe po confluent-oss-cp-ksql-server-7cbbbddc7b-shz6l
 kubectl -n kafka logs confluent-oss-cp-ksql-server-7cbbbddc7b-shz6l -c splunk
 kubectl -n kafka logs confluent-oss-cp-ksql-server-7cbbbddc7b-shz6l -c cp-ksql-server
+kubectl -n kafka exec -it confluent-oss-cp-ksql-server-7cbbbddc7b-shz6l /bin/bash -c cp-ksql-server
 ```
 
 --------------

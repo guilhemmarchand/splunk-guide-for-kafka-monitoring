@@ -96,6 +96,7 @@ kubectl -n kafka get po
 kubectl -n kafka describe po confluent-oss-cp-kafka-connect-64d4544f58-7tb9w
 kubectl -n kafka logs confluent-oss-cp-kafka-connect-64d4544f58-7tb9w -c telegraf
 kubectl -n kafka logs confluent-oss-cp-kafka-connect-64d4544f58-7tb9w -c cp-kafka-connect-server
+kubectl -n kafka exec -it confluent-oss-cp-kafka-connect-64d4544f58-7tb9w /bin/bash -c cp-kafka-connect-server
 ```
 
 --------------
