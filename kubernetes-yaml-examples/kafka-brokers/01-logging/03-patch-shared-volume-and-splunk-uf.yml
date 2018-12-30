@@ -1,5 +1,5 @@
 # meant to be applied using
-# kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
+# kubectl --namespace kafka patch statefulset confluent-oss-cp-kafka --patch "$(cat 03-patch-shared-volume-and-splunk-uf.yml )"
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -17,11 +17,10 @@ spec:
       containers:
       - name: cp-kafka-broker
         env:
-        - name: KAFKA_OPTS
-          valueFrom:
-            configMapKeyRef:
-              name: kafka-brokers-opts-configmap
-              key: kafka_brokers_kafka_opts
+        - name: KAFKA_LOG4J_OPTS
+          value: "-Dlog4j.configuration=file:/usr/local/share/kafka/log4j.properties"
+        - name: LOG_DIR
+          value: "/var/log/kafka"
         volumeMounts:
         - name: kafka-brokers-log4j-configmap
           mountPath: "/usr/local/share/kafka"
