@@ -1,5 +1,5 @@
 # meant to be applied using
-# kubectl --namespace kafka patch deployment confluent-oss-cp-schema-registry --patch "$(cat 04-patch-shared-volume-and-splunk-uf.yml )"
+# kubectl --namespace kafka patch deployment confluent-oss-cp-schema-registry --patch "$(cat 03-patch-shared-volume-and-splunk-uf.yml )"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,13 +17,10 @@ spec:
       containers:
       - name: cp-schema-registry-server
         env:
+        - name: SCHEMA_REGISTRY_LOG4J_OPTS
+          value: "-Dlog4j.configuration=file:/usr/local/share/kafka/log4j.properties"
         - name: LOG_DIR
           value: "/var/log/kafka"
-        - name: SCHEMA_REGISTRY_OPTS
-          valueFrom:
-            configMapKeyRef:
-              name: confluent-schema-registry-opts-configmap
-              key: schema_registry_opts
         volumeMounts:
         - name: confluent-schema-registry-log4j-configmap
           mountPath: "/usr/local/share/kafka"

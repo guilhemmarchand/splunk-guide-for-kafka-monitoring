@@ -40,12 +40,12 @@ kubectl create -f 01-telegraf-config-confluent-schema-registry.yml
 
 --------------------------------------------------------------------------------
 
-### Step 2: (replace SCHEMA_REGISTRY_OPTS configMap)
+### Step 2: (SCHEMA_REGISTRY_OPTS configMap)
 
-SCHEMA_REGISTRY_OPTS environment variable is updated to cover log4j and Jolokia:
+SCHEMA_REGISTRY_OPTS environment variable is created to cover Jolokia:
 
 ```
-kubectl replace -f 02-confluent-schema-registry-opts-configmap.yml
+kubectl create -f 02-confluent-schema-registry-opts-configmap.yml
 ```
 
 --------------------------------------------------------------------------------
@@ -71,6 +71,13 @@ The patch will update your Confluent schema-registry Deployment and create the T
 ```
 metadata:
   name: confluent-oss-cp-schema-registry
+```
+
+*This part must be changed to match the name of the container:*
+
+```
+      containers:
+      - name: cp-schema-registry-server
 ```
 
 - Run the patch command and ensure you specify the name of your Deployment:
