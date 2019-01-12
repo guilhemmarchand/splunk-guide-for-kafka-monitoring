@@ -25,7 +25,7 @@ Y2hAbmdlTTMK
 apiVersion: v1
 kind: Secret
 metadata:
-  name: splunk-secrets
+  name: global-splunk-secrets
   namespace: kafka
 type: Opaque
 data:
