@@ -8,6 +8,7 @@ data:
   telegraf.conf: |+
     [global_tags]
       env = "$ENV"
+      label = "$LABEL"
     [agent]
       hostname = "$POD_NAME"
     [[outputs.http]]

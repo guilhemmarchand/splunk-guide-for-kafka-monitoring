@@ -23,6 +23,11 @@ spec:
             configMapKeyRef:
               name: global-config
               key: env
+        - name: LABEL
+          valueFrom:
+            configMapKeyRef:
+              name: global-config
+              key: label
         - name: HOSTNAME
           valueFrom:
             fieldRef:

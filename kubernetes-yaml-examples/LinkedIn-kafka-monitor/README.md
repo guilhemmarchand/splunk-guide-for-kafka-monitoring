@@ -22,6 +22,7 @@ metadata:
   name: global-config
 data:
   env: my-environment
+  label: my-environment-label
   splunk_hec_url: my-splunk-hec.domain.com:8088
   splunk_hec_token: 205d43f1-2a31-4e60-a8b3-327eda49944a
 ```
