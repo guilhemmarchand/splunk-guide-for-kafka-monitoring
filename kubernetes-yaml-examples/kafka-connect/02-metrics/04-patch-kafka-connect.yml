@@ -16,11 +16,6 @@ spec:
             configMapKeyRef:
               name: kafka-connect-opts-configmap
               key: kafka_connect_kafka_opts
-        - name: LABEL
-          valueFrom:
-            configMapKeyRef:
-              name: global-config
-              key: label
         volumeMounts:
         - name: jolokia-jar
           mountPath: "/opt/jolokia"
@@ -38,6 +33,11 @@ spec:
             configMapKeyRef:
               name: global-config
               key: env
+        - name: LABEL
+          valueFrom:
+            configMapKeyRef:
+              name: global-config
+              key: label
         - name: HOSTNAME
           valueFrom:
             fieldRef:
