@@ -1,5 +1,5 @@
 # meant to be applied using
-# kubectl --namespace kafka patch deployment confluent-oss-cp-kafka-rest --patch "$(cat 04-patch-confluent-kafka-rest.yml )"
+#  kubectl --namespace kafka patch deployment confluent-oss-cp-ksql-server --patch "$(cat 04-patch-confluent-ksql-server.yml )"
 apiVersion: apps/v1
 kind: Deployment
 metadata:

@@ -1,5 +1,5 @@
 # meant to be applied using
-# kubectl --namespace kafka patch deployment kafka --patch "$(cat 04-patch-kafka-connect-statefulset.yml )"
+# kubectl --namespace kafka patch deployment kafka-monitor --patch "$(cat 04-patch-kafka-monitor.yml )"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
