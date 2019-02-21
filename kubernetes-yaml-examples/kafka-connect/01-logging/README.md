@@ -15,7 +15,7 @@ The containers automatically share a volume where logs are being created by Kafk
 *Convert the Splunk admin password in base64 value:*
 
 ```
-echo "ch@ngeM3" | base64
+echo -n "ch@ngeM3" | base64
 Y2hAbmdlTTMK
 ```
 

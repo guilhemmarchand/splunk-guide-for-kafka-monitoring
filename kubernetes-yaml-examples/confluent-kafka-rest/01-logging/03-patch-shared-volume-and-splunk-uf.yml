@@ -32,10 +32,7 @@ spec:
         - name: SPLUNK_START_ARGS
           value: "--accept-license"
         - name: SPLUNK_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: global-splunk-uf-secrets
-              key: splunk_password
+          value: "ch@ngeM3"
         - name: SPLUNK_DEPLOYMENT_SERVER
           valueFrom:
             configMapKeyRef:

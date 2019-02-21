@@ -1,0 +1,197 @@
+Forwarding from 127.0.0.1:8000 -> 8000
+Forwarding from [::1]:8000 -> 8000
+Handling connection for 8000
+E0123 10:42:16.491289   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:42:16 socat[27387] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:42:16.966552   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:42:16 socat[27388] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+E0123 10:45:12.083997   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:12 socat[4327] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+E0123 10:45:12.086775   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:12 socat[4326] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:12.095997   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:12 socat[4328] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:14.083037   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:14 socat[4356] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:15.082532   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:15 socat[4399] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:16.088994   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:16 socat[4500] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:17.084684   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:17 socat[4534] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:18.087071   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:18 socat[4617] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:19.082078   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:19 socat[4668] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:20.092232   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:20 socat[4766] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:21.087686   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:21 socat[4866] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+E0123 10:45:22.087541   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:22 socat[4889] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+E0123 10:45:22.089239   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:22 socat[4890] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:23.087996   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:23 socat[4910] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:24.091933   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:24 socat[4925] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:25.089453   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:25 socat[4949] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:26.085697   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:26 socat[4967] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:27.091436   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:27 socat[4985] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:28.088438   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:28 socat[5006] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:29.088356   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:29 socat[5216] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:30.091071   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:30 socat[5264] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:31.092876   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:31 socat[5345] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+E0123 10:45:32.212899   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:32 socat[5374] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+E0123 10:45:32.218002   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:32 socat[5375] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:33.089288   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:33 socat[5428] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:34.095785   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:34 socat[5482] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:35.091051   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:35 socat[5533] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:45:36.095536   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:45:36 socat[5551] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+E0123 10:47:35.085427   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:47:35 socat[8945] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:47:45.081742   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:47:45 socat[9146] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:47:55.088226   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:47:55 socat[9556] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+E0123 10:52:45.202521   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:52:45 socat[16372] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:52:47.208161   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:52:47 socat[16378] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:52:48.041008   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:52:48 socat[16382] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:52:49.204889   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:52:49 socat[16386] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:52:51.202591   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:52:51 socat[16461] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:52:54.083309   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:52:54 socat[16543] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:52:56.084297   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:52:56 socat[16576] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+E0123 10:52:58.082545   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:52:58 socat[16606] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+E0123 10:52:58.086553   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:52:58 socat[16607] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:53:01.083636   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:53:01 socat[16735] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:53:03.087283   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:53:03 socat[16965] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:53:05.124968   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:53:05 socat[17043] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:53:07.091505   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:53:07 socat[17149] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:53:08.086332   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:53:08 socat[17237] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 10:53:09.104472   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 10:53:09 socat[17529] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+E0123 11:00:35.089710   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:35 socat[27062] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+E0123 11:00:35.090651   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:35 socat[27061] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:35.099760   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:35 socat[27063] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:37.370334   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:37 socat[27067] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:38.086855   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:38 socat[27071] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:39.093866   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:39 socat[27090] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:40.087015   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:40 socat[27117] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:41.084919   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:41 socat[27221] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:42.085693   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:42 socat[27252] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:43.082212   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:43 socat[27271] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:44.080198   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:44 socat[27291] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+E0123 11:00:45.081845   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:45 socat[27313] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+E0123 11:00:45.282108   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:45 socat[27314] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:46.080265   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:46 socat[27343] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:47.081398   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:47 socat[27360] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:48.082435   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:48 socat[27375] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:49.090250   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:49 socat[27386] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:50.086166   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:50 socat[27556] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:51.097534   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:51 socat[27642] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:52.095251   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:52 socat[27675] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:53.190274   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:53 socat[27718] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:54.093730   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:54 socat[27756] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+E0123 11:00:55.092280   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:55 socat[27798] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+E0123 11:00:55.093913   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:55 socat[27799] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:56.086913   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:56 socat[27833] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:57.086924   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:57 socat[27886] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:58.083926   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:58 socat[28167] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:00:59.088028   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:00:59 socat[28281] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:01:00.086905   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:01:00 socat[28339] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+E0123 11:01:01.084569   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 1: 2019/01/23 11:01:01 socat[28445] E connect(6, AF=2 127.0.0.1:8000, 16): Connection refused
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+E0123 11:36:59.307251   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 143: 
+E0123 11:36:59.307253   13231 portforward.go:391] an error occurred forwarding 8000 -> 8000: error forwarding port 8000 to pod 82e00eb3bd49d6e4cb32c0547523bf0e6590d499af9e9d447bc9b7a690e96957, uid : exit status 143: 
+E0123 11:36:59.378610   13231 portforward.go:224] lost connection to pod
