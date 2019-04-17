@@ -118,6 +118,15 @@ Kafka Connect
     sudo systemctl daemon-restart
     sudo systemctl restart confluent-kafka-connect
 
+Schema registry
+===============
+
+**By default, the Confluent platform generates Schema registry log in the following location:**
+
+::
+
+    /var/log/confluent/schema-registry
+
 ksql-server
 ===========
 
