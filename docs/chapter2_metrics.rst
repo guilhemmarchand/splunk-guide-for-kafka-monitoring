@@ -121,11 +121,38 @@ Kafka Connect
 Schema registry
 ===============
 
-**By default, the Confluent platform generates Schema registry log in the following location:**
+**Configuring the systemd service file:**
+
+- Edit: ``/lib/systemd/system/confluent-schema-registry.service``
+
+- Add ``-javaagent`` argument:
 
 ::
 
-    /var/log/confluent/schema-registry
+    [Unit]
+    Description=RESTful Avro schema registry for Apache Kafka
+    Documentation=http://docs.confluent.io/
+    After=network.target confluent-kafka.target
+
+    [Service]
+    Type=simple
+    User=cp-schema-registry
+    Group=confluent
+    Environment="LOG_DIR=/var/log/confluent/schema-registry"
+    Environment="SCHEMA_REGISTRY_OPTS=-javaagent:/opt/jolokia/jolokia.jar=port=8778,host=0.0.0.0"
+    ExecStart=/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties
+    TimeoutStopSec=180
+    Restart=no
+
+    [Install]
+    WantedBy=multi-user.target
+
+- Reload systemd and restart:
+
+::
+
+    sudo systemctl daemon-restart
+    sudo systemctl restart confluent-schema-registry
 
 ksql-server
 ===========
