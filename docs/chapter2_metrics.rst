@@ -37,7 +37,7 @@ For more information about Jolokia: https://jolokia.org
 
 ::
 
-    /opt/jolokia/jolokia-jvm-1.6.0-agent.jar
+    /opt/jolokia/jolokia.jar
 
 - Modify the systemd service file to configure the ``-javaagent`` argument.
 
