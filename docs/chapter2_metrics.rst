@@ -216,7 +216,7 @@ The recommendation is to rely either on Splunk HEC or TCP inputs to forward Tele
 
 * https://da-itsi-telegraf-os.readthedocs.io/en/latest/telegraf.html
 
-Notes: The configuration above provides out of the box OS monitoring for the hosts, which you can get use with the Operating System monitoring application for Splunk:
+Notes: The configuration above provides out of the box OS monitoring for the hosts, which get be used with the Operating System monitoring application for Splunk:
 
 https://splunkbase.splunk.com/app/4271/
 
