@@ -115,8 +115,8 @@ The most scalalable and highly available design in term of where placing the Tel
 
 It is to possible to collect multiple instances of multiple components via a unique Telegraf instance, however there will be a limit where issues can start, and this design will not provide high availability as the failure of this instance will impact the whole metric collection.
 
-Telegraf output configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Telegraf output and minimal configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Whether you will be running Telegraf in various containers, or installed as a regular software within the different servers composing your Kafka
 infrastructure, a minimal configuration is required to teach Telegraf how to forward the metrics to your Splunk deployment.
