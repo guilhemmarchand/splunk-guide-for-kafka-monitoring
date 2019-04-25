@@ -1,6 +1,7 @@
 #.gitignore
 
 kubernetes-yaml-examples/yaml_git_ignored/*.yml
+kubernetes-yaml-examples/Jolokia/jolokia.jar
 
 # Compiled Python files
 *.pyo

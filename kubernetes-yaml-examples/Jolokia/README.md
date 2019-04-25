@@ -17,13 +17,13 @@ curl http://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.
 *Create the config map:*
 
 ```
-kubectl create configmap jolokia-jar --from-file=jolokia.jar
+kubectl --namespace kafka create configmap jolokia-jar --from-file=jolokia.jar
 ```
 
 *Export as a yaml:*
 
 ```
-kubectl get configmaps jolokia-jar -o yaml --export > 01-jolokia-jar-configmap.yml
+kubectl --namespace kafka get configmaps jolokia-jar -o yaml --export > 01-jolokia-jar-configmap.yml
 ```
 
 --------------------------------------------------------------------------------
