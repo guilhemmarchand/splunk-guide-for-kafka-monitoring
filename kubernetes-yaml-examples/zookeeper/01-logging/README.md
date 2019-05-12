@@ -16,7 +16,7 @@ The containers automatically share a volume where logs are being created by Zook
 
 ```
 echo -n "ch@ngeM3" | base64
-Y2hAbmdlTTMK=
+Y2hAbmdlTTM=
 ```
 
 *Update your secrets yaml file: ../../yaml_git_ignored/global-splunk-uf-secrets.yml:*
@@ -29,7 +29,7 @@ metadata:
   namespace: kafka
 type: Opaque
 data:
-  splunk_password: Y2hAbmdlTTMK=
+  splunk_password: Y2hAbmdlTTM=
 ```
 
 *Create:*
