@@ -200,6 +200,14 @@ Testing with minikube
 
 The templates provided are built on the naming convention of a helm installion called "confluent-oss" in a name space called "kafka":
 
+*helm3 command:*
+
+::
+
+    helm install confluent-oss confluentinc/cp-helm-charts
+
+The following command is valid for helm2 only, and left for historical purposes
+
 ::
 
     helm install cp-helm-charts --name confluent-oss --namespace kafka
@@ -212,92 +220,3 @@ The templates provided are built on the naming convention of a helm installion c
 - Confluent Schema registry in a Deployment
 - Confluent ksql-server in a Deployment
 - Confluent kafka-rest in a Deployment
-
-Yolean kubernetes-kafka
-***********************
-
-**The Kubernetes templates from Yolean has a very high quality content to spin up Zookeeper and Kafka in Kubernetes:**
-
-* https://github.com/Yolean/kubernetes-kafka
-
-These configuration samples can be used to deploy a Zookeeper cluster and Kafka cluster in Kube as a statefulSet. (which Confluent does as well)
-
-The provided sample yaml for Kubernetes can be used minor modifications related to the names of the statefulSet deployments.
-
-Testing with minikube
-=====================
-
-**Clone the repository:**
-
-::
-
-    git clone https://github.com/Yolean/kubernetes-kafka.git
-    cd kubernetes-kafka
-
-**Make sure you start minikube with enough memory and cpu resources, example:**
-
-::
-
-    minikube start --memory 8096 --cpus 4
-
-**Proceed to the following operations to spin up Zookeeper and Kafka:**
-
-*Create the kafka namespace:*
-
-::
-
-    kubectl create -f 00-namespace.yml
-
-*Configure RBAC:*
-
-::
-
-    kubectl create -f rbac-namespace-default/node-reader.yml
-    kubectl create -f rbac-namespace-default/pod-labler.yml
-
-*Configure the storageClasses for minikube:*
-
-::
-
-    kubectl create -f configure/minikube-storageclasses.yml
-
-*Spin-up the Zookeeper statefulSet deployments:*
-
-::
-
-    kubectl create -f zookeeper/10zookeeper-config.yml
-    kubectl create -f zookeeper/20pzoo-service.yml
-    kubectl create -f zookeeper/21zoo-service.yml
-    kubectl create -f zookeeper/30service.yml
-    kubectl create -f zookeeper/50pzoo.yml
-    kubectl create -f zookeeper/51zoo.yml
-
-*Wait for a few minutes to get the statefulSet up and running, you can use the following commands to verify the status:*
-
-::
-
-    kubectl -n kafka get pods
-    kubectl -n kafka get statefulsets.apps
-    kubectl -n kafka describe statefulsets.apps zoo
-    kubectl -n kafka describe statefulsets.apps pzoo
-    kubectl -n kafka logs pzoo-0 -c zookeeper
-    kubectl -n kafka logs zoo-0 -c zookeeper
-
-*Spin-up the Kafka statefulSet deployment:*
-
-::
-
-    kubectl create -f kafka/10broker-config.yml
-    kubectl create -f kafka/20dns.yml
-    kubectl create -f kafka/30bootstrap-service.yml
-    kubectl create -f kafka/50kafka.yml
-
-*Wait for a few minutes to get the statefulSet up and running, you can use the following commands to verify the status:*
-
-::
-
-    kubectl -n kafka get pods
-    kubectl -n kafka get statefulsets.apps
-    kubectl -n kafka describe statefulsets.apps kafka
-    kubectl -n kafka logs kafka-0 -c init-config
-    kubectl -n kafka logs kafka-0 -c broker

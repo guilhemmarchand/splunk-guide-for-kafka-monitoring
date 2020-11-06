@@ -54,7 +54,7 @@ author = u'Guilhem Marchand'
 # built documents.
 #
 # The short X.Y version.
-version = u'1.0'
+version = u'1.1'
 # The full version, including alpha/beta/rc tags.
 release = u'1'
 
@@ -131,6 +131,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
 #html_logo = None
+html_logo = "img/logo.png"
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32

@@ -229,6 +229,7 @@ Jolokia JVM monitoring
 
 **The following Kafka components require Jolokia to be deployed and started, as the modern and efficient interface to JMX that is collected by Telegraf:**
 
+* Apache Zookeeper
 * Apache Kafka Brokers
 * Apache Kafka Connect
 * Confluent schema-registry
@@ -255,6 +256,50 @@ Starting Jolokia with the JVM
 *Note: This method is the method used in the docker example within this documentation by using the environment variables of the container.*
 
 **When running on dedicated servers or virtual machines, update the relevant systemd configuration file to start Jolokia automatically:**
+
+For Zookeeper
+"""""""""""""
+
+**For bare-metals and dedicated VMs:**
+
+- Edit: ``/lib/systemd/system/confluent-zookeeper.service``
+
+- Add ``-javaagent`` argument:
+
+::
+
+  [Unit]
+  Description=Apache Kafka - ZooKeeper
+  Documentation=http://docs.confluent.io/
+  After=network.target
+
+  [Service]
+  Type=simple
+  User=cp-kafka
+  Group=confluent
+  ExecStart=/usr/bin/zookeeper-server-start /etc/kafka/zookeeper.properties
+  Environment="KAFKA_OPTS=-javaagent:/opt/jolokia/jolokia.jar=port=8778,host=0.0.0.0"
+  Environment="LOG_DIR=/var/log/zookeeper"
+  TimeoutStopSec=180
+  Restart=no
+
+  [Install]
+  WantedBy=multi-user.target
+
+- Reload systemd and restart:
+
+::
+
+    sudo systemctl daemon-restart
+    sudo systemctl restart confluent-zookeeper
+
+**For container based environments:**
+
+*Define the following environment variable when starting the containers:*
+
+::
+
+    KAFKA_OPTS: "-javaagent:/opt/jolokia/jolokia.jar=port=8778,host=0.0.0.0"
 
 For Kafka brokers
 """""""""""""""""
@@ -508,17 +553,17 @@ The Zookeeper monitoring is very simple and achieved by Telegraf and the Zookeep
 
 ::
 
-    # zookeeper metrics
-    [[inputs.zookeeper]]
-      servers = ["zookeeper-1:12181","zookeeper-2:22181","zookeeper-3:32181"]
+  name_prefix = "zk_"
+  urls = ["http://zookeeper-1:8778/jolokia","http://zookeeper-2:8778/jolokia","http://zookeeper-3:8778/jolokia"]
 
 **If each server runs an instance of Zookeeper and you deploy Telegraf, you can simply collect from the localhost:**
 
 ::
 
-    # zookeeper metrics
-    [[inputs.zookeeper]]
-      servers = ["$HOSTNAME:2181"]
+  # Zookeeper JVM monitoring
+  [[inputs.jolokia2_agent]]
+    name_prefix = "zk_"
+    urls = ["http://$HOSTNAME:8778/jolokia"]
 
 Full telegraf.conf example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -552,15 +597,32 @@ Full telegraf.conf example
          Authorization = "Splunk 205d43f1-2a31-4e60-a8b3-327eda49944a"
          X-Splunk-Request-Channel = "205d43f1-2a31-4e60-a8b3-327eda49944a"
 
-   # zookeeper metrics
-   [[inputs.zookeeper]]
-     servers = ["zookeeper-1:12181","zookeeper-2:22181","zookeeper-3:32181"]
+    # Zookeeper JMX collection
+
+    [[inputs.jolokia2_agent]]
+      name_prefix = "zk_"
+      urls = ["http://zookeeper-1:8778/jolokia","http://zookeeper-2:8778/jolokia","http://zookeeper-3:8778/jolokia"]
+
+    [[inputs.jolokia2_agent.metric]]
+      name  = "quorum"
+      mbean = "org.apache.ZooKeeperService:name0=*"
+      tag_keys = ["name0"]
+
+    [[inputs.jolokia2_agent.metric]]
+      name = "leader"
+      mbean = "org.apache.ZooKeeperService:name0=*,name1=*,name2=Leader"
+      tag_keys = ["name1"]
+
+    [[inputs.jolokia2_agent.metric]]
+      name = "follower"
+      mbean = "org.apache.ZooKeeperService:name0=*,name1=*,name2=Follower"
+      tag_keys = ["name1"]
 
 **Using mcatalog search command to verify data availability:**
 
 ::
 
-    | mcatalog values(metric_name) values(_dims) where index=* metric_name=zookeeper.*
+    | mcatalog values(metric_name) values(_dims) where index=* metric_name=zk_*
 
 Kafka brokers monitoring with Jolokia
 -------------------------------------

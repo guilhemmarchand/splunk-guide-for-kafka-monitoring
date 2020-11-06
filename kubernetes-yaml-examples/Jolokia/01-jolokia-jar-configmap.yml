@@ -5,5 +5,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: jolokia-jar
-  namespace: kafka
   selfLink: /api/v1/namespaces/kafka/configmaps/jolokia-jar

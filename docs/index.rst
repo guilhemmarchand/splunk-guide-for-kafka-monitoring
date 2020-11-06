@@ -53,10 +53,37 @@ Implementation:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Requirements
 
    pre-requisites
-   kafka_on_k8s
-   chapter1_events
-   chapter2_metrics
-   chapter3_alerting
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Running on containers
+
+   kafka_on_k8s
+   kafka_on_docker
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Running on premise
+
+   kafka_on_prem
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Events logging
+
+   chapter1_events
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Metrics
+
+   chapter2_metrics
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Monitoring and alerting
+
+   chapter3_alerting
