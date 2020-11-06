@@ -437,7 +437,7 @@ For Confluent ksql-server
 
 **For bare-metals and dedicated VMs:**
 
-- Edit: ``/lib/systemd/system/confluent-ksql.service``
+- Edit: ``/lib/systemd/system/confluent-ksqldb.service``
 
 - Add ``-javaagent`` argument:
 
@@ -454,7 +454,7 @@ For Confluent ksql-server
     Group=confluent
     Environment="LOG_DIR=/var/log/confluent/ksql"
     Environment="KSQL_OPTS=-javaagent:/opt/jolokia/jolokia.jar=port=8778,host=0.0.0.0"
-    ExecStart=/usr/bin/ksql-server-start /etc/ksql/ksql-server.properties
+    ExecStart=/usr/bin/ksql-server-start /etc/ksqldb/ksql-server.properties
     TimeoutStopSec=180
     Restart=no
 
@@ -466,7 +466,7 @@ For Confluent ksql-server
 ::
 
     sudo systemctl daemon-restart
-    sudo systemctl restart confluent-ksql
+    sudo systemctl restart confluent-ksqldb
 
 **For container based environments:**
 

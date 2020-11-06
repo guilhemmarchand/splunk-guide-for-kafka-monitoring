@@ -280,7 +280,8 @@ Notes: By default, the systemd already defines the log directory location, which
 
 ::
 
-    sudo systemctl restart confluent-ksql
+    sudo systemctl daemon-restart
+    sudo systemctl restart confluent-ksqldb
 
 kafka-rest
 ----------
